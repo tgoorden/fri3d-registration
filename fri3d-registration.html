@@ -1,0 +1,77 @@
+<head>
+  <title>Fri3d Hacker Camp pre-registration</title>
+</head>
+
+<body>
+
+</body>
+
+<template name="layout">
+	<div class="container">
+	{{> navigation}}
+	<div class="row">
+		<div class="col-md-12">
+			{{yield}}
+		</div>
+	</div>
+	
+</div>
+<div class="navbar-fixed-bottom">
+	<div class="container">
+		This pre-registration app was built in <a href="http://www.meteor.com">Meteor</a> by <a href="http://www.twitter.com/tgoorden">Thomas Goorden</a>
+	</div>
+	</div>
+</template>
+
+<template name="navigation">
+	<div class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="{{pathFor 'welcome'}}">Fri3d Camp 2014</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="{{pathFor 'practical'}}">Practical information</a></li>
+				<li class=""><a href="{{pathFor 'pricing'}}">Pricing</a></li>
+				<li class=""><a href=""></a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				{{ loginButtons }}
+			</ul>
+		</div>
+
+	</div>
+</template>
+
+<template name="welcome">
+	<div class="jumbotron">
+		<h3>Welcome to the Fri3d Camp 2014 pre-registration website!</h3>
+		<p>From 14 to 17 August 2014, the Belgian Hacker Community invites you to a family friendly summer camp around technology, education and nature at the <a href="http://www.dehogerielen.be/" target="_new">beautiful Hoge Rielen nature reserve</a>. To help us prepare and to make sure you will have a spot, we invite you to pre-register here.</p>
+		<p></p>
+		<p><a href="{{pathFor 'practical'}}" class="btn btn-primary btn-lg">What to expect</a></p>
+		<p><a href="{{pathFor 'pricing'}}" class="btn btn-primary btn-lg">What will it cost</a></p>
+		<p><a href="" class="btn btn-success btn-lg">Pre-register now</a></p>
+		
+	</div>
+</template>
+
+
+<template name="practical">
+
+</template>
+
+<template name="pricing">
+
+</template>
+
+
+<template name="preregistration">
+
+</template>
+
+<template name="statistics">
+	{{! a simple overview of the current number of pre-registrations}}
+</template>
+
+<template name="preregistrations">
+	{{! a list of all preregistrations}}
+</template>
