@@ -30,9 +30,9 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="{{pathFor 'practical'}}">Practical information</a></li>
-				<li class=""><a href="{{pathFor 'pricing'}}">Pricing</a></li>
-				<li class=""><a href=""></a></li>
+				<li class="{{style 'practical'}}"><a href="{{pathFor 'practical'}}">Practical information</a></li>
+				<li class="{{style 'pricing'}}"><a href="{{pathFor 'pricing'}}">Pricing</a></li>
+				<li class="{{style 'preregistration'}}"><a href="{{pathFor 'preregistration'}}">Pre-registration</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				{{ loginButtons }}
@@ -55,17 +55,39 @@
 </template>
 
 
-<template name="practical">
-
-</template>
-
-<template name="pricing">
-
-</template>
-
-
 <template name="preregistration">
-
+<h3>Pre-registration</h3>
+	<form role="form">
+		<fieldset>
+			<p>Please indicate which type of tickets you intend to buy once they become available.</p>
+	<div class="form-group">
+		<label for="ticketType">Ticket type</label><br/>
+		<input type="radio" name="ticketType" value="Regular"/> Regular<br/>
+		<input type="radio" name="ticketType" value="Business"/> Business (with invoice)<br/>
+		<input type="radio" name="ticketType" value="Student"/> Student<br/>
+		<input type="radio" name="ticketType" value="Minor"/> Minor (&lt; 18y, note: if you are below 16y, you need to be accompanied by an adult)<br/>
+		<input type="radio" name="ticketType" value="Children"/> Child (&lt; 12y)
+	</div>
+	<div class="form-group">
+		<label for="amount">Amount</label><br/>
+		<input type="number" min="1" max="10" step="1"/> people
+	</div>
+	<button type="submit" class="btn btn-primary" id="addPreregistration">Add ticket pre-registration</button>
+</form>
+<p>Please note the following:</p>
+<ul>
+	<li>This is *not* a ticket or ticket reservation. However, you will get an early opportunity to buy an actual ticket. You are not obliged to buy a ticket at that point.</li>
+	<li>You can preregister an entire group or family. However, keep in mind that tickets under a single preregistration have to be bought together. So, make sure you are willing to advance the ticket cost where necessary.</li>
+	<li>The current pricing is an indication, *not* finalized. We will however try to maintain this as the *maximum* ticket cost. See <a href="{{pathFor 'pricing'}}">pricing</a></li>
+</ul>
+<h3>Your pre-registration:</h3>
+<ul>
+	{{#each registration}}
+	<li><input type="button" class="deletePreregistration btn btn-sm btn-warning">Delete</input> {{amount}} of type {{type}} </li>	
+	{{/each}}
+</ul>
+Estimated total ticket cost: {{estimate}} &euro;
+	<fieldset>
 </template>
 
 <template name="statistics">
