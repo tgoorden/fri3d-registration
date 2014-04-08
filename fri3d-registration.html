@@ -11,7 +11,7 @@
 	{{> navigation}}
 	<div class="row">
 		<div class="col-md-12">
-			{{yield}}
+				{{> yield}}
 		</div>
 	</div>
 	
@@ -35,7 +35,7 @@
 				<li class="{{style 'preregistration'}}"><a href="{{pathFor 'preregistration'}}">Pre-registration</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				{{ loginButtons }}
+					{{> loginButtons }}
 			</ul>
 		</div>
 
@@ -53,7 +53,6 @@
 		
 	</div>
 </template>
-
 
 <template name="preregistration">
 <h3>Pre-registration</h3>
@@ -73,6 +72,7 @@
 		<input type="number" min="1" max="10" step="1"/> people
 	</div>
 	<button type="submit" class="btn btn-primary" id="addPreregistration">Add ticket pre-registration</button>
+	</fieldset>
 </form>
 <p>Please note the following:</p>
 <ul>
@@ -83,11 +83,12 @@
 <h3>Your pre-registration:</h3>
 <ul>
 	{{#each registration}}
-	<li><input type="button" class="deletePreregistration btn btn-sm btn-warning">Delete</input> {{amount}} of type {{type}} </li>	
+	<li>
+	<button type="button" class="deletePreregistration btn btn-sm btn-warning" value="Delete"></button> {{amount}} of type {{type}}
+	</li>	
 	{{/each}}
 </ul>
 Estimated total ticket cost: {{estimate}} &euro;
-	<fieldset>
 </template>
 
 <template name="statistics">
