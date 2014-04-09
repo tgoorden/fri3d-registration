@@ -56,29 +56,36 @@
 
 <template name="preregistration">
 <h3>Pre-registration</h3>
-	<form role="form">
+<form role="form" id="registrationForm">
 		<fieldset>
-			<p>Please indicate which type of tickets you intend to buy once they become available.</p>
-	<div class="form-group">
-		<label for="ticketType">Ticket type</label><br/>
-		<input type="radio" name="ticketType" value="Regular"/> Regular<br/>
-		<input type="radio" name="ticketType" value="Business"/> Business (with invoice)<br/>
-		<input type="radio" name="ticketType" value="Student"/> Student<br/>
-		<input type="radio" name="ticketType" value="Minor"/> Minor (&lt; 18y, note: if you are below 16y, you need to be accompanied by an adult)<br/>
-		<input type="radio" name="ticketType" value="Children"/> Child (&lt; 12y)
-	</div>
-	<div class="form-group">
-		<label for="amount">Amount</label><br/>
-		<input type="number" min="1" max="10" step="1"/> people
-	</div>
-	<button type="submit" class="btn btn-primary" id="addPreregistration">Add ticket pre-registration</button>
-	</fieldset>
+				<p>Please indicate which type of tickets you intend to buy once they become available.</p>
+				<div class="form-group">
+						<label for="ticketType">Ticket type</label><br/>
+						<input type="radio" name="ticketType" value="baby"/> &lt; 3y (8€)<br/>
+						<input type="radio" name="ticketType" value="todler"/> &lt; 6y (16€)<br/>
+						<input type="radio" name="ticketType" value="kid"/> &lt; 12y (32€)<br/>
+						<input type="radio" name="ticketType" value="student"/> &lt; 24y or student (64€)<br/>
+						<input type="radio" name="ticketType" value="regular"/> &gt; 24y (128€)<br/>
+
+						<input type="radio" name="ticketType" value="business"/> Business (256€, with invoice)<br/>
+				</div>
+				<div class="form-group">
+						<label for="amount">Amount</label><br/>
+						<input id="amount" type="number" min="1" max="10" step="1"/> people
+				</div>
+				{{#if hasError 'registration'}}
+				<div class="alert alert-danger">
+						{{showError 'registration'}}
+				</div>
+				{{/if}}
+				<button type="submit" class="btn btn-primary" id="addPreregistration">Add ticket pre-registration</button>
+		</fieldset>
 </form>
 <p>Please note the following:</p>
 <ul>
-	<li>This is *not* a ticket or ticket reservation. However, you will get an early opportunity to buy an actual ticket. You are not obliged to buy a ticket at that point.</li>
-	<li>You can preregister an entire group or family. However, keep in mind that tickets under a single preregistration have to be bought together. So, make sure you are willing to advance the ticket cost where necessary.</li>
-	<li>The current pricing is an indication, *not* finalized. We will however try to maintain this as the *maximum* ticket cost. See <a href="{{pathFor 'pricing'}}">pricing</a></li>
+		<li>This is *not* a ticket or ticket reservation. However, you will get an early opportunity to buy an actual ticket. You are not obliged to buy a ticket at that point.</li>
+		<li>You can preregister an entire group or family. However, keep in mind that tickets under a single preregistration have to be bought together. So, make sure you are willing to advance the ticket cost where necessary.</li>
+		<li>The current pricing is an indication, *not* finalized. We will however try to maintain this as the *maximum* ticket cost. See <a href="{{pathFor 'pricing'}}">pricing</a></li>
 </ul>
 <h3>Your pre-registration:</h3>
 <ul>
