@@ -8,18 +8,12 @@
 
 <template name="layout">
 	<div class="container">
-	{{> navigation}}
-	<div class="row">
-		<div class="col-md-12">
-				{{> yield}}
+		{{> navigation}}
+		<div class="row">
+			<div class="col-md-12">
+					{{> yield}}
+			</div>
 		</div>
-	</div>
-	
-</div>
-<div class="navbar-fixed-bottom">
-	<div class="container">
-		This pre-registration app was built in <a href="http://www.meteor.com">Meteor</a> by <a href="http://www.twitter.com/tgoorden">Thomas Goorden</a>
-	</div>
 	</div>
 </template>
 
@@ -30,9 +24,8 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="{{style 'practical'}}"><a href="{{pathFor 'practical'}}">Practical information</a></li>
-				<li class="{{style 'pricing'}}"><a href="{{pathFor 'pricing'}}">Pricing</a></li>
-				<li class="{{style 'preregistration'}}"><a href="{{pathFor 'preregistration'}}">Pre-registration</a></li>
+				<li><a href="#preregister">Pre-register now!</a></li>
+				<li><a href="http://fri3d.be" target="_blank">Wiki</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 					{{> loginButtons }}
@@ -43,89 +36,212 @@
 </template>
 
 <template name="welcome">
-	<div class="jumbotron">
-		<h3>Welcome to the Fri3d Camp 2014 pre-registration website!</h3>
-		<p>From 14 to 17 August 2014, the Belgian Hacker Community invites you to a family friendly summer camp around technology, education and nature at the <a href="http://www.dehogerielen.be/" target="_new">beautiful Hoge Rielen nature reserve</a>. To help us prepare and to make sure you will have a spot, we invite you to pre-register here.</p>
-		<hr/>
-		<div class="row">
-			<div class="col-md-4">
-				<p><a href="{{pathFor 'practical'}}" class="btn btn-primary btn-lg">What to expect</a></p>
-				<p><a href="{{pathFor 'pricing'}}" class="btn btn-primary btn-lg">What will it cost</a></p>
-				<p><a href="" class="btn btn-success btn-lg">Pre-register now</a></p>
-			</div>
-			<div class="col-md-8">
-				<div class="row">
-					<div class="col-md-4 text-center">
-						<p><strong>Tickets sold</strong></p>
-					</div>
-					<div class="col-md-4 text-center">
-						<p><strong>Tickets available</strong></p>
-					</div>
-					<div class="col-md-4 text-center">
-						<p><strong>Waiting list</strong></p>
-					</div>
+	
+	<section id="jumbotron">
+		<div class="jumbotron">
+			
+			<div class="row">
+				
+				<div class="col-md-8">
+					<h1>Fri3d Camp<br/>pre-registration</h1>
+					<hr/>
+					<p>From 14 to 17 August 2014, the Belgian Hacker Community invites you to <a href="http://fri3d.be" target="_new"><strong>Fri3d</strong>, a family-friendly summer camp about technology, education and nature</a> at the beautiful <a href="http://www.dehogerielen.be/" target="_new">Hoge Rielen</a> nature reserve. To help us prepare and to make sure you will have a spot, we invite you to pre-register here.</p>
 				</div>
-				<div class="row">
-					<div class="col-md-4 text-center">
-						<h1><strong>0</strong></h1>
-					</div>
-					<div class="col-md-4 text-center">
-						<h1><strong>256</strong></h1>
-					</div>
-					<div class="col-md-4 text-center">
-						<h1><strong>0</strong></h1>
-					</div>
+				
+				<div class="col-md-4 text-center">
+					<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="225px" height="350px" viewBox="0 0 485.55299 757.85399" id="Layer_1" xml:space="preserve">
+						<metadata id="metadata113">
+							<rdf:RDF>
+								<cc:Work rdf:about="">
+								<dc:format>image/svg+xml</dc:format>
+								<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+								<dc:title></dc:title>
+								</cc:Work>
+							</rdf:RDF>
+						</metadata>
+						<defs id="defs111" />
+						<polygon points="584.014,227.313 541.59,330.244 524.364,304.619 500.761,402.339 509.071,247.556 526.298,273.182 535.951,200.094 " transform="translate(-170.12601,-89.246)" id="polygon65" />
+						<polygon points="472.697,305.948 470.856,371.609 455.986,361.082 463.435,419.928 435.599,332.81 450.469,343.337 440.485,301 " transform="translate(-170.12601,-89.246)" id="polygon67" />
+						<polygon points="485.71,172.59 471.441,250.881 471.064,128.178 485.828,147.657 490.178,89.46 529.385,108.816 500.475,192.07 " transform="translate(-170.12601,-89.246)" id="polygon69" />
+						<polygon points="653.342,287.888 594.889,346.104 590.447,323.659 546.349,383.699 596.324,280.278 600.766,302.724 628.279,255.529 " transform="translate(-170.12601,-89.246)" id="polygon71" />
+						<polygon points="230.62,167.602 291.095,282.922 255.179,279.136 325.108,373.663 192.518,250.016 228.434,253.802 170.126,190.278 " transform="translate(-170.12601,-89.246)" id="polygon73" />
+						<polygon points="427.552,98.895 425.623,240.261 393.297,218.068 411.15,344.477 348.546,157.855 380.872,180.048 358.075,89.246 " transform="translate(-170.12601,-89.246)" id="polygon75" />
+						<polygon points="377.231,328.954 355.401,321.712 386.043,390.036 320.381,295.068 342.21,302.311 314.579,254.856 355.3,248.981 " transform="translate(-170.12601,-89.246)" id="polygon77" />
+						<polygon points="218.288,366.65 423.524,822.731 628.761,366.65 491.937,480.67 " transform="translate(-170.12601,-89.246)" id="polygon79" style="fill:#ffffff" />
+						<path d="m 320.06299,379.864 -291.396995,-121.42 224.732995,499.41 232.154,-515.9 -165.49,137.91 z m -75.121,277.25 35.754,-8.66 -27.263,60.58 -8.491,-51.92 z m -26.891,-26.55 -108.631,-241.4 33.454,-2.95 -22,-50.95 119.066,32.88 83.617,34.84 10.59,-8.83 7.726,2.14 -6.925,-2.8 96.768,-80.64 -142.971,317.71 h -70.694 z" id="path81" />
+						<rect width="397" height="106" x="56.873993" y="523.55389" id="rect83" style="fill:#ffffff" />
+						<g transform="translate(-170.12601,-89.246)" id="g85">
+							<path d="m 630,726.813 v -114 -157 H 220 v 271 h 410 z m -14,-14 h -58 v -12 h 42 v -62 h -62 v 74 H 234 v -86 h 382 v 86 z m -58,-32 v -22 h 22 v 22 h -22 z" id="path87" />
+							<polygon points="302,680.813 267,680.813 267,658.813 302,658.813 302,638.813 247,638.813 247,700.813 302,700.813 " id="polygon89" />
+							<polygon points="362,680.813 350,680.813 350,658.813 372,658.813 372,700.813 392,700.813 392,638.813 330,638.813 330,700.813 362,700.813 " id="polygon91" />
+							<polygon points="476,658.813 498,658.813 498,700.813 518,700.813 518,638.813 414,638.813 414,700.813 434,700.813 434,658.813 456,658.813 456,700.813 476,700.813 " id="polygon93" />
+						</g>
+						<g transform="translate(-170.12601,-89.246)" id="g95">
+							<polygon points="313,530.813 269,530.813 269,508.813 335,508.813 335,485.813 269,485.813 247,485.813 247,508.813 247,530.813 247,552.813 247,596.813 269,596.813 269,552.813 313,552.813 " id="polygon97" style="fill:#ffffff" />
+							<polygon points="335,530.813 335,552.813 335,596.813 358,596.813 358,552.813 377,552.813 377,530.813 358,530.813 " id="polygon99" style="fill:#ffffff" />
+							<rect width="22" height="66" x="401" y="530.81299" id="rect101" style="fill:#ffffff" />
+							<rect width="22" height="23" x="401" y="485.81299" id="rect103" style="fill:#ffffff" />
+							<polygon points="468,530.813 468,552.813 489,552.813 489,574.813 446,574.813 446,596.813 489,596.813 512,596.813 512,574.813 512,552.813 512,530.813 512,508.813 512,485.813 489,485.813 446,485.813 446,508.813 489,508.813 489,530.813 " id="polygon105" style="fill:#ffffff" />
+							<path d="m 578,485.813 v 45 h -22 -21 v 22 22 22 h 21 22 22 v -22 -22 -22 -45 h -22 z m 0,89 h -22 v -22 h 22 v 22 z" id="path107" style="fill:#ffffff" />
+						</g>
+					</svg>
+				</div>
+				
+			</div>
+			
+			<hr/>
+			<div class="row">
+				<div class="col-md-4 text-center">
+					<p><strong>Tickets sold</strong></p>
+				</div>
+				<div class="col-md-4 text-center">
+					<p><strong>Tickets to be sold</strong></p>
+				</div>
+				<div class="col-md-4 text-center">
+					<p><strong>Pre-registered</strong></p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 text-center">
+					<h1><strong>0</strong></h1>
+				</div>
+				<div class="col-md-4 text-center">
+					<h1><strong>256</strong></h1>
+				</div>
+				<div class="col-md-4 text-center">
+					<h1><strong>0</strong></h1>
 				</div>
 			</div>
 		</div>
-		
-	</div>
-</template>
+	</section>
+	
+	<section id="practical">
+		<div class="row">
+			<div class="col-md-4">
+				<h3><i class="fa fa-home pull-right"></i> Location</h3>
+				<hr/>
+				<p><strong>de Hoge Rielen</strong> (<a href="http://goo.gl/maps/Cb8sq">Google Maps</a>)</p>
+				<p>Camping grounds <strong>K2</strong> and <strong>K8</strong></p>
+				<p>Molenstraat 62 | 2460 Kasterlee</p>
+				<p><strong>Parking 5</strong></p>
+				<p>Ossengoor (without number) | 2460 Lichtaart</p>
+			</div>
+			<div class="col-md-4">
+				<h3><i class="fa fa-clock-o pull-right"></i> Opening hours</h3>
+				<hr/>
+				<table class="table table-condensed table-no-border">
+					<tr><td>Start of buildup</td><td>Wed 2014-08-13</td><td>10:00</td></tr>
+					<tr><td><strong>Start of camp</strong></td><td><strong>Thu 2014-08-14</strong></td><td><strong>18:00</strong></td></tr>
+					<tr><td><strong>End of camp</strong></td><td><strong>Sun 2014-08-17</strong></td><td><strong>18:00</strong></td></tr>
+					<tr><td>End of cleanup</td><td>Mon 2014-08-18</td><td>18:00</td></tr>
+				</table>
+				<p>Everyone is very welcome to volunteer during buildup and cleanup!</p>
+			</div>
+			<div class="col-md-4">
+				<h3><i class="fa fa-link pull-right"></i> Links</h3>
+				<hr/>
+				<p><i class="fa fa-home pull-right"></i> <a href="http://fri3d.be">Homepage and wiki</a></p>
+				<p><i class="fa fa-twitter pull-right"></i> <a href="http://twitter.com/Fri3dCamp">@Fri3dCamp on Twitter</a></p>
+				<p><i class="fa fa-leaf pull-right"></i> <a href="http://www.dehogerielen.be/de-hoge-rielen">de Hoge Rielen</a></p>
+				
+			</div>
+		</div>
+	</section>
 
-<template name="preregistration">
-<h3>Pre-registration</h3>
-<form role="form" id="registrationForm">
-		<fieldset>
-				<p>Please indicate which type of tickets you intend to buy once they become available.</p>
+	<section id="preregister">
+		<h1><i class="fa fa-ticket pull-right"></i> Pre-register now!</h1>
+		<hr/>
+		<div class="alert alert-success">
+			<p><strong>A ticket includes</strong></p>
+			<ul>
+				<li>Your <strong>participation at camp</strong> with all its perks and responsabilities, you can enjoy the camp to its fullest!</li>
+				<li>A <strong>warm meal on Friday evening</strong> (BBQ) and another <strong>warm meal on Saturday evening</strong> (stoofvlees met frietjes?). Vegetarian options will be available. You will have to bring food to provide for your own breakfast, lunch and snacks. Fresh bread and pastries will be available for pre-order at camp.</li>
+				<li>A <strong>spot to pitch a tent</strong> for yourself and your family.</li>
+			</ul>
+		</div>			
+		<form role="form" id="registrationForm">
+			<fieldset>
+				<p>Please indicate how many tickets of each type you intend to buy (once they become available). Ticket prices are to promote families to participate.</p>
 				<div class="form-group">
-						<label for="ticketType">Ticket type</label><br/>
-	<table class="table table-striped table-bordered table-condensed">
-		<tr><th>Ticket type</th><th>Ticket description</th><th colspan="2">Ticket price</th></tr>
-		<tr><td><input type="radio" name="ticketType" value="youngling"/> Youngling</td><td>Less than 3 years old on 15 August 2014</td><td>2<sup>3</sup> €</td><td>8 €</td></tr>
-		<tr><td><input type="radio" name="ticketType" value="initiate"/> Initiate</td><td>Less than 6 years old on 15 August 2014</td><td>2<sup>4</sup> €</td><td>16 €</td></tr>
-		<tr><td><input type="radio" name="ticketType" value="trainee"/> Trainee</td><td>Less than 12 years old on 15 August 2014</td><td>2<sup>5</sup> €</td><td>32 €</td></tr>
-		<tr><td><input type="radio" name="ticketType" value="apprentice"/> Apprentice</td><td>Less than 24 years old on 15 August 2014</td><td>2<sup>6</sup> €</td><td>64 €</td></tr>
-		<tr><td><input type="radio" name="ticketType" value="knight"/> Knight</td><td>24 years old or older on 15 August 2014</td><td>2<sup>7</sup> €</td><td>128 €</td></tr>
-		<tr><td><input type="radio" name="ticketType" value="emperor"/> Emperor</td><td>8 bit business ticket with invoice</td><td>2<sup>8</sup> €</td><td>256 €</td></tr>
-	</table>
+					<table class="table table-striped table-bordered table-condensed">
+						<tr>
+							<th>Ticket type</th>
+							<th>Ticket description</th>
+							<th colspan="2">Estimated ticket price</th>
+							<th>Number</th>
+						</tr>
+						<tr>
+							<td>Youngling</td>
+							<td>Less than 3 years old on 15 August 2014</td>
+							<td>2<sup>3</sup> €</td>
+							<td>8 €</td>
+							<td><input type="number" min="0" max="10" name="youngling" value="0"/></td>
+						</tr>
+						<tr>
+							<td>Initiate</td>
+							<td>Less than 6 years old on 15 August 2014</td>
+							<td>2<sup>4</sup> €</td>
+							<td>16 €</td>
+							<td><input type="number" min="0" max="10" name="initiate" value="0"/></td>
+						</tr>
+						<tr>
+							<td>Trainee</td>
+							<td>Less than 12 years old on 15 August 2014</td>
+							<td>2<sup>5</sup> €</td>
+							<td>32 €</td>
+							<td><input type="number" min="0" max="10" name="trainee" value="0"/></td>
+						</tr>
+						<tr>
+							<td>Apprentice</td>
+							<td>Less than 24 years old on 15 August 2014</td>
+							<td>2<sup>6</sup> €</td>
+							<td>64 €</td>
+							<td><input type="number" min="0" max="10" name="apprentice" value="0"/></td>
+						</tr>
+						<tr>
+							<td>Knight</td>
+							<td>24 years old or older on 15 August 2014</td>
+							<td>2<sup>7</sup> €</td>
+							<td>128 €</td>
+							<td><input type="number" min="0" max="10" name="knight" value="0"/></td>
+						</tr>
+						<tr>
+							<td>Emperor</td>
+							<td>8 bit business ticket with invoice</td>
+							<td>2<sup>8</sup> €</td>
+							<td>256 €</td>
+							<td><input type="number" min="0" max="10" name="emperor" value="0"/></td>
+						</tr>
+					</table>
 				</div>
 				<div class="form-group">
-						<label for="amount">Amount</label><br/>
-						<input id="amount" type="number" min="1" max="10" step="1"/> people
+					<label for="email">Your e-mail address</label><br/>
+					<input id="email" type="text"/>
+					<p class="help-block">We'll send you an e-mail when your tickets become available.</p>
 				</div>
 				{{#if hasError 'registration'}}
 				<div class="alert alert-danger">
 						{{showError 'registration'}}
 				</div>
 				{{/if}}
-				<button type="submit" class="btn btn-primary" id="addPreregistration">Add ticket pre-registration</button>
-		</fieldset>
-</form>
-<p>Please note the following:</p>
-<ul>
-		<li>This is *not* a ticket or ticket reservation. However, you will get an early opportunity to buy an actual ticket. You are not obliged to buy a ticket at that point.</li>
-		<li>You can preregister an entire group or family. However, keep in mind that tickets under a single preregistration have to be bought together. So, make sure you are willing to advance the ticket cost where necessary.</li>
-		<li>The current pricing is an indication, *not* finalized. We will however try to maintain this as the *maximum* ticket cost. See <a href="{{pathFor 'pricing'}}">pricing</a></li>
-</ul>
-<h3>Your pre-registration:</h3>
-<ul>
-	{{#each registration}}
-	<li>
-	<button type="button" class="deletePreregistration btn btn-sm btn-warning" value="Delete"></button> {{amount}} of type {{type}}
-	</li>	
-	{{/each}}
-</ul>
-Estimated total ticket cost: {{estimate}} &euro;
+				<p><button type="submit" class="btn btn-primary btn-lg btn-block" id="addPreregistration">Pre-register your tickets now!</button></p>
+				<div class="alert alert-warning">
+					<p><strong>Please note</strong></p>
+					<ul>
+						<li>This is <strong>not</strong> a ticket or ticket reservation. However, you will get an early opportunity to buy an actual ticket. You are not obliged to buy a ticket at that point.</li>
+						<li>You can preregister an entire group or family. However, keep in mind that tickets under a single preregistration have to be bought together. So, make sure you are willing to advance the ticket cost where necessary.</li>
+						<li>The current pricing is an indication, and is <strong>not</strong> finalized. We will however try to maintain this as the <strong>maximum</strong> ticket cost. See <a href="{{pathFor 'pricing'}}">pricing</a></li>
+						<li>There is a <strong>hard limit of 256 heads</strong> at camp (not 257). Tickets will be sold according to the pre-registration waiting list, FIFO. You will get a week time to confirm your tickets when they become available, before passing on your tickets to the next on the waiting list.</li>
+					</ul>
+				</div>			
+				<div class="alert alert-danger">
+					<p><strong>It's all-in or nothing</strong></p>
+					<p>There are no single-day or visitor passes. Unfortunately, we cannot allow casual visitors for safety reasons. You have to get a full ticket and go all-in to be part of the experience. Please ask campers without a wristband to get one at the info booth.</p>
+				</div>
+			</fieldset>
+		</form>
+	</section>
+
 </template>
 
 <template name="statistics">
