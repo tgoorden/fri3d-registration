@@ -214,24 +214,31 @@
 						</tr>
 					</table>
 				</div>
-				<div class="form-group">
-					<label for="email">Your e-mail address</label><br/>
-					<input id="email" type="text"/>
-					<p class="help-block">We'll send you an e-mail when your tickets become available.</p>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="email">Your e-mail address</label><br/>
+							<input id="email" type="text"/>
+							<p class="help-block">We'll send you an e-mail to confirm and an e-mail when your tickets become available.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<label for="email">Pre-register now!</label><br/>
+						<p><button type="submit" class="btn btn-primary btn-lg btn-block" id="addPreregistration">Pre-register your tickets now!</button></p>
+						{{#if hasError 'registration'}}
+						<div class="alert alert-danger">
+								{{showError 'registration'}}
+						</div>
+						{{/if}}
+					</div>
 				</div>
-				{{#if hasError 'registration'}}
-				<div class="alert alert-danger">
-						{{showError 'registration'}}
-				</div>
-				{{/if}}
-				<p><button type="submit" class="btn btn-primary btn-lg btn-block" id="addPreregistration">Pre-register your tickets now!</button></p>
 				<div class="alert alert-warning">
 					<p><strong>Please note</strong></p>
 					<ul>
 						<li>This is <strong>not</strong> a ticket or ticket reservation. However, you will get an early opportunity to buy an actual ticket. You are not obliged to buy a ticket at that point.</li>
+						<li>There is a <strong>strict limit of 256 heads</strong> at camp (not 257). Tickets will be sold FIFO following to the pre-registration waiting list.</li>
 						<li>You can preregister an entire group or family. However, keep in mind that tickets under a single preregistration have to be bought together. So, make sure you are willing to advance the ticket cost where necessary.</li>
 						<li>The current pricing is an indication, and is <strong>not</strong> finalized. We will however try to maintain this as the <strong>maximum</strong> ticket cost. See <a href="{{pathFor 'pricing'}}">pricing</a></li>
-						<li>There is a <strong>hard limit of 256 heads</strong> at camp (not 257). Tickets will be sold according to the pre-registration waiting list, FIFO. You will get a week time to confirm your tickets when they become available, before passing on your tickets to the next on the waiting list.</li>
 					</ul>
 				</div>			
 				<div class="alert alert-danger">
