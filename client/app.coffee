@@ -28,7 +28,7 @@ Template.preregister.events
 		amounts = template.findAll "input.amount"
 		_.each amounts, (amount)->
 			ticket =
-				amount: amount.value
+				amount: parseInt amount.value
 				type: amount.getAttribute "name"
 			if ticket.amount > 0
 				registration.tickets.push ticket
@@ -39,3 +39,32 @@ Template.preregister.events
 			if error
 				Errors.throw error, "registration"
 		return
+
+Template.jumbotron.statistics = ()->
+		statistics =
+			total: 5
+			preregistrations: 0
+		_.each Registrations.find({}).fetch(), (registration)->
+			statistics.preregistrations += registration.amount
+		statistics.remaining = statistics.total - statistics.preregistrations
+		if statistics.remaining < 1
+			statistics.soldout = true
+			statistics.style = "soldout"
+		else
+			statistics.style = "open"
+		return statistics
+
+Template.registrations.hasRegistrations = ()->
+		Registrations.find({owner:Meteor.userId()}).count() > 0
+
+
+Template.registrations.list = ()-> Registrations.find {owner:Meteor.userId()}
+
+Template.registrations.total = ()->
+		total =
+			amount: 0
+			cost: 0
+		_.each Registrations.find({owner:Meteor.userId()}).fetch(), (registration)->
+			total.amount += registration.amount
+			total.cost += registration.subtotal
+		return total

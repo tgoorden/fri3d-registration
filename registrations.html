@@ -1,0 +1,34 @@
+<template name="registrations">
+{{#if hasRegistrations}}
+<h3>Your current pre-registrations:</h3>
+<table class="table">
+		<thead>
+				<th>Type</th>
+				<th>Amount</th>
+				<th>Cost</th>
+		</thead>
+		<tbody>
+				{{#each list}}
+				{{> registration}}
+				{{/each}}
+		</tbody>
+		<tfoot>
+				<tr>
+						<td> </td>
+						<td>{{total.amount}}</td>
+						<td>{{total.cost}} €</td>
+				</tr>
+		</tfoot>
+</table>
+
+<p class="help-block">We'll send you an e-mail to confirm and an e-mail when your tickets become available.</p>
+{{/if}}
+</template>
+
+<template name="registration">
+<tr>
+		<td>{{type}}</td>
+		<td>{{amount}}</td>
+		<td>{{subtotal}} €</td>
+</tr>
+</template>

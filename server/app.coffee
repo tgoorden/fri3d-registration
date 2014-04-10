@@ -1,4 +1,4 @@
-Meteor.publish "registrations", ()-> Registrations.find {}
+Meteor.publish "registrations", ()-> Registrations.find {},{fields:{remarks:0}}
 
 Meteor.methods
 	"register": (registration)->
@@ -15,7 +15,7 @@ Meteor.methods
 				ticket.owner = Meteor.userId()
 				ticket.subtotal = tt.cost * ticket.amount
 				ticket.remark = registration.remark if registration.remark
-				ticker.created = new Date()
+				ticket.created = new Date()
 				Registrations.insert ticket
 		return
 

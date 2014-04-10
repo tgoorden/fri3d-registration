@@ -58,17 +58,17 @@
 				<div class="col-md-4 text-center">
 						<div class="panel panel-default">
 								<div class="panel-body">
-										<h1><strong>0</strong></h1>
+										<h1><strong>{{statistics.preregistrations}}</strong></h1>
 								</div>
 								<div class="panel-heading">
-										<h3>tickets sold</h3>
+										<h3>pre-registrations</h3>
 								</div>
 						</div>
 				</div>
 				<div class="col-md-4 text-center">
 						<div class="panel panel-default">
 								<div class="panel-body">
-										<h1><strong>256</strong></h1>
+										<h1><strong>{{statistics.total}}</strong></h1>
 								</div>
 								<div class="panel-heading">
 										<h3><strong>tickets to be sold</strong></h3>
@@ -78,14 +78,19 @@
 				<div class="col-md-4 text-center">
 						<div class="panel panel-default">
 								<div class="panel-body">
-										<h1><strong>0</strong></h1>
+										<h1 class="{{statistics.style}}"><strong>{{statistics.remaining}}</strong></h1>
 								</div>
 								<div class="panel-heading">
-										<h3><strong>pre-registrations</strong></h3>
+										<h3><strong>remaining</strong></h3>
 								</div>
 						</div>
 				</div>
 		</div>
+		{{#if statistics.soldout}}
+		<div class="alert alert-danger">
+				<p>It seems the maximum number of prereservations has already been reached. You can still add your prereservation, they will be made available on a first come, first serve basis.</p>
+		</div>
+		{{/if}}
 </div>
 </section>
 

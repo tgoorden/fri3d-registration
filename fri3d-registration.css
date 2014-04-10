@@ -12,3 +12,7 @@ body {
 .table-no-border>tfoot>tr>td {
   border-top: none; 
 }
+
+h1.soldout {
+	color: #f00;
+}
