@@ -14,7 +14,7 @@ Meteor.methods
 			else
 				ticket.owner = Meteor.userId()
 				ticket.subtotal = tt.cost * ticket.amount
-				ticket.remark = registration.remark if registration.remark
+				ticket.remarks = registration.remarks if registration.remarks
 				ticket.created = new Date()
 				Registrations.insert ticket
 		return
