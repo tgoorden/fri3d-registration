@@ -42,7 +42,7 @@ Template.preregister.events
 
 Template.jumbotron.statistics = ()->
 		statistics =
-			total: 5
+			total: 256
 			preregistrations: 0
 		_.each Registrations.find({}).fetch(), (registration)->
 			statistics.preregistrations += registration.amount
@@ -68,3 +68,12 @@ Template.registrations.total = ()->
 			total.amount += registration.amount
 			total.cost += registration.subtotal
 		return total
+
+Template.registration.events
+	"click .remove": (event,template)->
+		event.preventDefault()
+		confirmed = confirm "Are you sure you want to delete this preregistration?"
+		if confirmed
+			console.log "Delecting #{this._id}"
+			Registrations.remove {_id:this._id}
+		return

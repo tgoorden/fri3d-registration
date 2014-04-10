@@ -1,11 +1,12 @@
 <template name="registrations">
 {{#if hasRegistrations}}
 <h3>Your current pre-registrations:</h3>
-<table class="table">
+<table class="table table-hover">
 		<thead>
 				<th>Type</th>
 				<th>Amount</th>
 				<th>Cost</th>
+				<th></th>
 		</thead>
 		<tbody>
 				{{#each list}}
@@ -15,8 +16,13 @@
 		<tfoot>
 				<tr>
 						<td> </td>
-						<td>{{total.amount}}</td>
-						<td>{{total.cost}} €</td>
+						<td>
+								<label>Total number of tickets</label><br/>
+								{{total.amount}}</td>
+						<td>
+								<label>Total cost</label><br/>
+								{{total.cost}} €</td>
+						<td></td>
 				</tr>
 		</tfoot>
 </table>
@@ -30,5 +36,6 @@
 		<td>{{type}}</td>
 		<td>{{amount}}</td>
 		<td>{{subtotal}} €</td>
+		<td><button class="remove btn btn-small btn-danger">X</button></td>
 </tr>
 </template>
