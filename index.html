@@ -1,0 +1,46 @@
+<head>
+  <title>Fri3d Hacker Camp pre-registration</title>
+</head>
+
+<body>
+
+</body>
+
+<template name="layout">
+	<div class="container">
+		{{> navigation}}
+		<div class="row">
+			<div class="col-md-12">
+					{{> yield}}
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="navigation">
+	<div class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="{{pathFor 'welcome'}}">Fri3d Camp 2014</a>
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li><a href="#preregister">Pre-register now!</a></li>
+				<li><a href="http://fri3d.be" target="_blank">Wiki</a></li>
+			</ul>
+		</div>
+
+	</div>
+</template>
+
+<template name="welcome">
+
+	{{> jumbotron}}
+
+	{{> practical}}
+
+	{{> preregister}}
+</template>
+
+<template name="preregistrations">
+	{{! a list of all preregistrations}}
+</template>

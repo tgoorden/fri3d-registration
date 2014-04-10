@@ -1,9 +1,8 @@
 {
   "packages": {
     "iron-router": {},
-    "accounts-ui-bootstrap-3": {},
     "bootstrap-3": {},
-    "autoform": {},
-    "font-awesome": {}
+    "font-awesome": {},
+    "accounts-ui-bootstrap-3": {}
   }
 }

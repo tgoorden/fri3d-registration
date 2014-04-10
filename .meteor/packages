@@ -4,10 +4,13 @@
 # but you can also edit it by hand.
 
 standard-app-packages
+accounts-password
 coffeescript
 iron-router
 less
-accounts-ui-bootstrap-3
 bootstrap-3
-accounts-github
 font-awesome
+http
+accounts-entry
+accounts-ui-bootstrap-3
+moment
