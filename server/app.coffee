@@ -4,6 +4,10 @@ Meteor.methods
 	"register": (registration)->
 		if !Meteor.user()
 			throw new Meteor.Error 403,"You have to be logged in to register"
+		launch = moment.utc(Meteor.public.settings.launch)
+		now = moment.utc()
+		if now.isBefore(launch)
+			throw new Meteor.Error 500, "We haven't launched yet. Good effort, but no."
 		allowed_types = _.pluck tickettypes, "type"
 		_.each registration.tickets, (ticket)->
 			if ticket.amount < 1 or ticket.amount > 10

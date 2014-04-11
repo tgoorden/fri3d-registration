@@ -1,4 +1,6 @@
 <template name="preregister">
+
+{{#if open}}
 <section id="preregister">
 <h1><i class="fa fa-ticket pull-right"></i> Pre-register now!</h1>
 <hr/>
@@ -55,7 +57,9 @@
 						</div>
 				</div>
 
-
+		</fieldset>
+</form>
+<!-- Note: the button is kept out of the form as it interferes with the signup stuff-->
 				<div class="form-group">
 						<label for="remarks">Remarks</label><br/>
 				<textarea id="remarks" rows="3" class="form-control"></textarea>
@@ -81,8 +85,12 @@
 					
 				{{> registrations}}
 				
-		</fieldset>
-</form>
 </section>
-
+{{else}}
+<section id="countdown">
+<div class="jumbotron">
+		<h1>Preregistrations will open {{countdown}}</h1>
+</div>
+</section>
+{{/if}}
 </template>

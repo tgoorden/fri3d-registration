@@ -54,6 +54,27 @@ Template.jumbotron.statistics = ()->
 			statistics.style = "open"
 		return statistics
 
+# The countdown timer:
+countDown = ()->
+	launch = moment.utc(Meteor.settings.public.launch)
+	now = moment.utc()
+	Session.set "countdown", launch.fromNow()
+	if now.isAfter(launch)
+		Session.set "launched", true
+		id = Session.get "countdown_id"
+		if id
+			Meteor.clearInterval id
+
+Meteor.startup ()->
+	Session.set "launched", false
+	countdown_id = Meteor.setInterval countDown, 1000
+
+Template.preregister.open = ()-> Session.get "launched"
+
+Template.preregister.countdown = ()-> Session.get "countdown"
+
+# (Pre-)registration listings:
+
 Template.registrations.hasRegistrations = ()->
 		Registrations.find({owner:Meteor.userId()}).count() > 0
 
@@ -74,6 +95,5 @@ Template.registration.events
 		event.preventDefault()
 		confirmed = confirm "Are you sure you want to delete this preregistration?"
 		if confirmed
-			console.log "Delecting #{this._id}"
 			Registrations.remove {_id:this._id}
 		return
