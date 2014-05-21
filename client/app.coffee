@@ -65,6 +65,9 @@ Template.preregister.events
 		Meteor.call "register",registration, (error)->
 			if error
 				Errors.throw error, "registration"
+			else
+				Errors.throw "You have successfully (pre)registered tickets. You can view them below.", "registration_success"
+				$('html,body').animate({scrollTop: $('a[name=#registrations]').offset().top},'slow')
 
 Template.jumbotron.statistics = ()->
 		statistics =

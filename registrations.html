@@ -1,4 +1,12 @@
 <template name="registrations">
+<a name="#registrations"></a>
+
+{{#if hasError 'registration_success'}}
+<div class="alert alert-success">
+		{{showError 'registration_success'}}
+</div>
+{{/if}}
+
 {{#if hasRegistrations}}
 <h3>Your current pre-registrations:</h3>
 <table class="table table-hover">
@@ -27,7 +35,8 @@
 		</tfoot>
 </table>
 
-<p class="help-block">We'll send you an e-mail to confirm and an e-mail when your tickets become available.</p>
+<p>We'll send you an e-mail to confirm and an e-mail when your tickets become available.</p>
+<p>You can add more tickets below if you like.</p>
 {{/if}}
 </template>
 
