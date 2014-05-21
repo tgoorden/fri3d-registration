@@ -18,7 +18,6 @@ Template.navigation.style = (path)->
 Template.preregister.events
 	"change #amount": (event, template) ->
 		amount = event.target.value
-		console.log amount
 	"click #addPreregistration": (event,template) ->
 		event.preventDefault()
 		Errors.clearAll()
