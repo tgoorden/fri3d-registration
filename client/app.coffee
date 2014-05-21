@@ -22,6 +22,32 @@ Template.preregister.events
 	"click #addPreregistration": (event,template) ->
 		event.preventDefault()
 		Errors.clearAll()
+		if !Meteor.user()
+			# if the user is not logged in yet, we're assuming a registration is in order
+			options =
+				email: template.find("#email").value.toLowerCase()
+				password: template.find("#password").value
+			Meteor.call "user_exists", options.email, (error,result)->
+				if error
+					Errors.throw error, "registration"
+				if result
+					Meteor.loginWithPassword options.email, options.password, (error)->
+						if error
+							Errors.throw error, "registration"
+						else
+							register template
+				else
+					Accounts.createUser options, (error)->
+						if error
+							Errors.throw error, "registration"
+						else
+							register template
+		# Already logged in!
+		else
+			register template
+		return
+
+@register = (template)->
 		registration =
 			remarks: template.find("#remarks").value
 			tickets: []
@@ -38,7 +64,6 @@ Template.preregister.events
 		Meteor.call "register",registration, (error)->
 			if error
 				Errors.throw error, "registration"
-		return
 
 Template.jumbotron.statistics = ()->
 		statistics =

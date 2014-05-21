@@ -64,22 +64,31 @@
 						<label for="remarks">Remarks</label><br/>
 				<textarea id="remarks" rows="3" class="form-control"></textarea>
 				</div>
+				{{#unless currentUser}}
+				<div class="row">
+						<div class="col-md-6">
+								<label>Your email address:</label>
+								<input id="email" class="form-control login"/>
+						</div>
+							<div class="col-md-6">
+							<label>Password:
+								<input id="password" type="password" class="form-control login"/>
+							</label>
+						</div>
+				</div>
+				{{/unless}}
 				<div class="row">
 						<div class="col-md-12">
-								{{#if currentUser}}
-								<label for="email">Pre-register now!</label><br/>
-								<p><button type="submit" class="btn btn-primary btn-lg btn-block" id="addPreregistration">Pre-register your tickets now!</button></p>
+								
 								{{#if hasError 'registration'}}
 								<div class="alert alert-danger">
 										{{showError 'registration'}}
 								</div>
 								{{/if}}
-								{{else}}
-								<div class="form-group">
-										<label>Log in or create an account to register:</label><br/>
-								{{> loginButtons}}
-						</div>
-								{{/if}}
+								
+								<label for="email">Pre-register now!</label><br/>
+								<p><button type="submit" class="btn btn-primary btn-lg btn-block" id="addPreregistration">Pre-register your tickets now!</button></p>
+								
 						</div>
 				</div>
 					

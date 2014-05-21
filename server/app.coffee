@@ -4,7 +4,7 @@ Meteor.methods
 	"register": (registration)->
 		if !Meteor.user()
 			throw new Meteor.Error 403,"You have to be logged in to register"
-		launch = moment.utc(Meteor.public.settings.launch)
+		launch = moment.utc(Meteor.settings.public.launch)
 		now = moment.utc()
 		if now.isBefore(launch)
 			throw new Meteor.Error 500, "We haven't launched yet. Good effort, but no."
@@ -21,6 +21,13 @@ Meteor.methods
 				ticket.remarks = registration.remarks if registration.remarks
 				ticket.created = new Date()
 				Registrations.insert ticket
+		return
+	"user_exists": (email)->
+		console.log "Checking email #{email}"
+		user = Meteor.users.findOne({"emails.address":email})
+		if user
+			console.log "User found"
+			return true
 		return
 
 
