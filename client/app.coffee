@@ -22,6 +22,16 @@ Template.preregister.events
 	"click #addPreregistration": (event,template) ->
 		event.preventDefault()
 		Errors.clearAll()
+		registration =
+			remarks: template.find("#remarks").value
+			tickets: []
+		amounts = template.findAll "input.amount"
+		_.each amounts, (amount)->
+			ticket =
+				amount: parseInt amount.value
+				type: amount.getAttribute "name"
+			if ticket.amount > 0
+				registration.tickets.push ticket
 		if !Meteor.user()
 			# if the user is not logged in yet, we're assuming a registration is in order
 			options =
@@ -35,29 +45,20 @@ Template.preregister.events
 						if error
 							Errors.throw error, "registration"
 						else
-							register template
+							if registration.tickets.length > 0
+								register registration
 				else
 					Accounts.createUser options, (error)->
 						if error
 							Errors.throw error, "registration"
 						else
-							register template
+							register registration
 		# Already logged in!
 		else
-			register template
+			register registration
 		return
 
-@register = (template)->
-		registration =
-			remarks: template.find("#remarks").value
-			tickets: []
-		amounts = template.findAll "input.amount"
-		_.each amounts, (amount)->
-			ticket =
-				amount: parseInt amount.value
-				type: amount.getAttribute "name"
-			if ticket.amount > 0
-				registration.tickets.push ticket
+@register = (registration)->
 		if registration.tickets.length is 0
 			Errors.throw "Please specify at least one ticket amount", "registration"
 			return
