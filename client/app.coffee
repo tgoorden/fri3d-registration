@@ -13,14 +13,13 @@ Meteor.subscribe "merchandising"
 Meteor.subscribe "tokens"
 
 Router.map ()->
-	this.route "welcome",
+	this.route "ticketing",
 			path: "/"
 	this.route "practical", {}
 	this.route "pricing", {}
 	this.route "preregistration", {}
 	this.route "mailing"
 	this.route "users"
-	this.route "ticketing"
 	this.route "addticket"
 	this.route "addmerchandising"
 	this.route "addtokens"
