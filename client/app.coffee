@@ -183,6 +183,9 @@ Template.login.events
 				Session.set "login_message", {text:"Check your mail!",style:"success"}
 		return
 
+Template.tickets.list = ()-> Tickets.find {}
+
+
 UI.registerHelper "admin", ()->
 	return Meteor.user() and Meteor.user().role is "admin"
 
