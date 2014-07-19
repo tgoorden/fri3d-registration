@@ -75,6 +75,8 @@ Meteor.methods
 			email.to = user.emails[0].address
 			Email.send email
 	"addticket": (ticket)->
+		if !Meteor.user()
+			throw new Meteor.Error 403, "You have to be logged in"
 		required = [
 			{"key":"first_name","label":"First name"}
 			{"key":"last_name","label":"Last name"}
@@ -89,6 +91,9 @@ Meteor.methods
 		tt = _.findWhere tickettypes, {type: ticket.type}
 		if !tt
 			throw new Meteor.Error 500, "Unknown ticket type: #{ticket.type}"
+		ticket.amount = tt.cost
+		ticket.paid = false
+		ticket.created = new Date()
 		Tickets.insert pick
 		return
 

@@ -185,6 +185,7 @@ Template.login.events
 
 Template.addticket.events
 	"click #submitTicket": (event,template)->
+			Session.set "ticket_message", null
 			ticket =
 				first_name: template.find("#first_name").value
 				last_name: template.find("#last_name").value
@@ -203,11 +204,21 @@ Template.addticket.events
 				departure:
 					date:  template.find("#departure_date").value
 					time:  template.find("#departure_time").value
-			console.log EJSON.stringify ticket
-			
+			Meteor.call "addticket", ticket, (error)->
+				if error
+					Session.set "ticket_message", {text:error.reason,style:"danger"}
+				else
+					Session.set "ticket_message", {text: "Your ticket was added. Don't forget to checkout", style: "success"}
 			return
 
+Template.addticket.message = ()-> Session.get "ticket_message"
+
 Template.tickets.list = ()-> Tickets.find {}
+
+Template.tickets.events
+	"click #removeTicket": (event,template)->
+			Tickets.remove {_id:this._id}
+			return
 
 Template.merchandising.list = ()-> Merchandising.find {}
 

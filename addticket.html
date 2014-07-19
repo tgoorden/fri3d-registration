@@ -105,6 +105,7 @@
 								<!-- end modal contents -->
 						</div>
 						<div class="modal-footer">
+						{{#if message}}<p class="alert alert-{{message.style}}">{{message.text}}</p>{{/if}}
 								<button type="button" id="submitTicket" class="btn btn-primary">Add ticket to my order</button>
 								<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
 						</div>
