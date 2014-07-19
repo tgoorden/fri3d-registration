@@ -185,6 +185,7 @@ Template.login.events
 
 Template.tickets.list = ()-> Tickets.find {}
 
+Template.merchandising.list = ()-> Merchandising.find {}
 
 UI.registerHelper "admin", ()->
 	return Meteor.user() and Meteor.user().role is "admin"
