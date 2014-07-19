@@ -23,15 +23,28 @@
 						<div class="modal-body">
 								<h1>Pay € {{total}} using VISA/MasterCard</h1>
 								<p>Note: Your credit card data is only sent to Stripe (our payment processor), it is never seen or stored on our own server.</p>
-								<ul>
-										<li><span class="expl">Creditkaart nummer: </span><input type="number" id="card_number" /></li>
-										<li><span class="expl">CVC: </span><input type="number" id="cvc_check"></li>
-										<li><span class="expl">Kaart type: </span><select id="card_type">
-												<option value="VISA">Visa</option>
-												<option value="MasterCard">MasterCard</option>
-										</select></li>
-										<li><span class="expl">Naam op kaart: </span><input type="text" id="name"></li>
-										<li><span class="expl">Vervalmaand: </span><select id="month">
+									<div class="form-group">
+											<label for="card_number">Credit card number</label>
+											<input type="number" class="form-control" id="card_number">
+									</div>
+									<div class="form-group">
+											<label for="cvc_check">CVC</label>
+											<input type="number" class="form-control" id="cvc_check">
+									</div>
+									<div class="form-group">
+										<label for="card_number">Card type</label>
+										<select id="card_type" class="form-control">
+											<option value="VISA">Visa</option>
+											<option value="MasterCard">MasterCard</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="name">Name on card</label>
+										<input type="text" id="name" class="form-control">
+									</div>
+									<div class="form-group">
+										<label for="month">Expiration month</label>
+										<select id="month">
 												<option value="1">1</option>
 												<option value="2">2</option>
 												<option value="3">3</option>
@@ -44,9 +57,11 @@
 												<option value="10">10</option>
 												<option value="11">11</option>
 												<option value="12">12</option>
-										</select></li>
-										<li><span class="expl">Vervaljaar: </span><select id="year">
-												<option value="2013">2013</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<label for="month">Expiration year</label>
+										<select id="year">
 												<option value="2014">2014</option>
 												<option value="2015">2015</option>
 												<option value="2016">2016</option>
@@ -55,8 +70,8 @@
 												<option value="2019">2019</option>
 												<option value="2020">2020</option>
 												<option value="2021">2021</option>
-										</select></li>
-								</ul>
+										</select>
+									</div>
 						</div>
 						<div class="modal-footer">
 						{{#if stripe_message}}<p class="alert alert-{{stripe_message.style}}">{{stripe_message.text}}</p>{{/if}}
