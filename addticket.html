@@ -6,22 +6,22 @@
   
     <div class="form-group">
       <label for="FirstName">First name</label>
-      <input type="text" class="form-control" name="firstName" placeholder="First name">
+      <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First name">
     </div>
     <div class="form-group">
       <label for="LastName">Last name</label>
-      <input type="text" class="form-control" name="lastName" placeholder="Last name">
+      <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last name">
     </div>
     <div class="form-group">
       <label for="Birthday">Birthday</label>
-      <input type="date" class="form-control" name="birthday">
+      <input type="date" class="form-control" name="birthday" id="birthday">
     </div>
 
     <h2>Your ticket and volunteering options</h2>
 
     <div class="form-group">
       <label for="ticket">Ticket</label>
-      <select class="form-control" name="ticket">
+      <select class="form-control" name="ticket" id="ticket">
         <option value="3bit">3bit ticket: Younger than 3 years old standard ticket (8€)</option>
         <option value="4bit">4bit ticket: Younger than 6 years old standard ticket (16€)</option>
         <option value="5bit">5bit ticket: Younger than 12 years old standard ticket (32€)</option>
@@ -38,31 +38,31 @@
     <p class="help-block">In case you have selected a volunteer ticket, or want to volunteer with a standard ticket, please select at least 2 options. We will try our very best to assign shifts according to these preferences.</p>
     <div class="checkbox">
       <label>
-        <input type="checkbox" name="volunteerOptions" value="infobooth">
+        <input type="checkbox" name="volunteerOptions" id="volunteerOptions_infobooth" value="infobooth">
         Infobooth (central info point, tickets, t-shirts, ...)
       </label>
     </div>
     <div class="checkbox">
       <label>
-        <input type="checkbox" name="volunteerOptions" value="security">
+        <input type="checkbox" name="volunteerOptions" id="volunteerOptions_security" value="security">
         Security (walk the camp, make sure everyone has a wristband, check the parking ...)
       </label>
     </div>
     <div class="checkbox">
       <label>
-        <input type="checkbox" name="volunteerOptions" value="drinks">
+        <input type="checkbox" name="volunteerOptions" id="volunteerOptions_drinks" value="drinks">
         Drinks and food (manage the bar, light the BBQ, ...)
       </label>
     </div>
     <div class="checkbox">
       <label>
-        <input type="checkbox" name="volunteerOptions" value="standby">
+        <input type="checkbox" name="volunteerOptions" id="volunteerOptions_standby" value="standby">
         Stand-by (be on call for various jobs)
       </label>
     </div>
     <div class="checkbox">
       <label>
-        <input type="checkbox" name="volunteerOptions" value="night">
+        <input type="checkbox" name="volunteerOptions" id="volunteerOptions_night" value="night">
         Night shift (I am a night owl, I can be on call during the night)
       </label>
     </div>
@@ -71,7 +71,7 @@
     <p class="help-block">All tickets include two warm dinners on Friday and Saturday. Please indicate if you want vegetarian options.</p>
     <div class="checkbox">
       <label>
-        <input type="checkbox" name="foodOptions" value="veggie">
+        <input type="checkbox" name="foodOptions" id="foodOptions_veggie" value="veggie">
         I want the vegetarian food option
       </label>
     </div>
@@ -81,13 +81,13 @@
 
     <div class="form-group">
       <label for="Arrival">Expected arrival</label>
-      <input type="date" class="form-control" name="arrivalDate" value="2014-08-14">
-      <input type="time" class="form-control" name="arrivalTime" value="18:00">
+      <input type="date" class="form-control" name="arrivalDate" id="arrivalDate" value="2014-08-14">
+      <input type="time" class="form-control" name="arrivalTime" id="arrivalTime" value="18:00">
     </div>
     <div class="form-group">
       <label for="Departure">Expected departure</label>
-      <input type="date" class="form-control" name="departureDate" value="2014-08-17">
-      <input type="time" class="form-control" name="departureTime" value="18:00">
+      <input type="date" class="form-control" name="departureDate" id="departureDate" value="2014-08-17">
+      <input type="time" class="form-control" name="departureTime" id="departureTime" value="18:00">
     </div>
   
     <h2>Submit my ticket details</h2>
