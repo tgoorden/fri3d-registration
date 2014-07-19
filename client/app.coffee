@@ -183,6 +183,11 @@ Template.login.events
 				Session.set "login_message", {text:"Check your mail!",style:"success"}
 		return
 
+Template.addticket.events
+	"click #submitTicket": (event,template)->
+		console.log "captured"
+		return
+
 Template.tickets.list = ()-> Tickets.find {}
 
 Template.merchandising.list = ()-> Merchandising.find {}
