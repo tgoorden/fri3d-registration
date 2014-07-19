@@ -1,6 +1,36 @@
 <template name="merchandising">
-{{#each list}}
-{{size}} - {{amount}} - {{paid}} - <button id="removeMerchandising" class="btn btn-small btn-danger">Delete</button>
-{{/each}}
+  <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#merchandising_modal">
+    Add T-shirt
+  </button>
+  <h2>Your T-shirts</h2>
+  <table class="table table-striped">
+    <tr>
+      <th width="60%">Size</th>
+      <th width="20%">Cost</th>
+      <th width="20%">Payment status</th>
+      <th width="0%"></th>
+    </tr>
+    {{#each list}}
+      <tr>
+        <td>{{size}}</td>
+        <td>15€</td>
+        <td>
+          {{#if paid}}
+            Paid
+          {{else}}
+            Not paid yet
+          {{/if}}
+        </td>
+        <td>
+          {{#if paid}}
+            Paid T-shirts cannot be removed
+          {{else}}
+            <button id="removeMerchandising" class="btn btn-small btn-danger">Delete</button>
+          {{/if}}
+        </td>
+      </tr>
+    {{/each}}
+  </table>
+  
 {{> addmerchandising}}
 </template>

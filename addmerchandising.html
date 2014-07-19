@@ -1,48 +1,50 @@
 <template name="addmerchandising">
   
-  <h2>Fri3d camp official T-shirts</h2>
-  <div class="row">
-    <div class="col-md-6">
-      <p class="help-block">Of course, we'll have camp T-shirts at 15€ per T-shirt. We'll have black T-shirts for dads and moms and red T-shirts for our children, with a geeky Belgian design.</p>
-    </div>
-    <div class="col-md-6">
-      <img src="tshirtmen.jpg" width="150px">
-      <img src="tshirtkids.jpg" width="150px">
-      <img src="tshirtwomen.jpg" width="150px">
-    </div>
-  </div>
-  
-  <div class="row">
-    <div class="col-md-6">
-      <h2>Add a T-shirt to your order</h2>
-      <p class="help-block">Please select your T-shirt size and add it to your order. Refer to the sizes table to select your correct T-shirt size (sizes in cm)</p>
-      <form role="form" class="form-inline">
-        <div class="form-group">
-          <select class="form-control" name="size" id="size">
-            <option value="MenS">Men S</option>
-            <option value="MenM">Men M</option>
-            <option value="MenL" selected>Men L</option>
-            <option value="MenXL">Men XL</option>
-            <option value="MenXXL">Men XXL</option>
-            <option value="WomenXS">Women XS</option>
-            <option value="WomenS">Women S</option>
-            <option value="WomenM">Women M</option>
-            <option value="WomenL">Women L</option>
-            <option value="WomenXL">Women XL</option>
-            <option value="WomenXXL">Women XXL</option>
-            <option value="Kids12">Kids 1-2</option>
-            <option value="Kids34">Kids 3-4</option>
-            <option value="Kids56">Kids 5-6</option>
-            <option value="Kids78">Kids 7-8</option>
-            <option value="Kids911">Kids 9-11</option>
-            <option value="Kids1214">Kids 12-14</option>
-          </select>
+  <div class="modal fade" id="merchandising_modal">
+  	<div class="modal-dialog">
+  		<div class="modal-content">
+  			<div class="modal-header">
+  				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  				<h4 class="modal-title">Add a ticket to your order</h4>
+  			</div>
+  			<div class="modal-body">
+  				<!-- start modal contents -->
+
+          <h2>Fri3d camp official T-shirts</h2>
+              <p class="help-block">Of course, we'll have camp T-shirts at 15€ per T-shirt. We'll have black T-shirts for dads and moms and red T-shirts for our children, with a geeky Belgian design.</p>
+              <img src="tshirtmen.jpg" width="150px">
+              <img src="tshirtkids.jpg" width="150px">
+              <img src="tshirtwomen.jpg" width="150px">
+
+              <h2>Add a T-shirt to your order</h2>
+              <p class="help-block">Please select your T-shirt size and add it to your order. Refer to the sizes table to select your correct T-shirt size (sizes in cm)</p>
+              <form role="form" class="form-inline">
+                <div class="form-group">
+                  <select class="form-control" name="size" id="size">
+                    <option value="MenS">Men S</option>
+                    <option value="MenM">Men M</option>
+                    <option value="MenL" selected>Men L</option>
+                    <option value="MenXL">Men XL</option>
+                    <option value="MenXXL">Men XXL</option>
+                    <option value="WomenXS">Women XS</option>
+                    <option value="WomenS">Women S</option>
+                    <option value="WomenM">Women M</option>
+                    <option value="WomenL">Women L</option>
+                    <option value="WomenXL">Women XL</option>
+                    <option value="WomenXXL">Women XXL</option>
+                    <option value="Kids12">Kids 1-2</option>
+                    <option value="Kids34">Kids 3-4</option>
+                    <option value="Kids56">Kids 5-6</option>
+                    <option value="Kids78">Kids 7-8</option>
+                    <option value="Kids911">Kids 9-11</option>
+                    <option value="Kids1214">Kids 12-14</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary" id="addMerchandising">Add t-shirt</button>
+              </form>
+              <img src="tshirtsizes.png" width="450px">
         </div>
-        <button type="submit" class="btn btn-primary" id="addMerchandising">Add t-shirt</button>
-      </form>
-    </div>
-    <div class="col-md-6">
-      <img src="tshirtsizes.png" width="450px">
+      </div>
     </div>
   </div>
 </template>
