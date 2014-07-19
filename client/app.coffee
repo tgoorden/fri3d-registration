@@ -222,6 +222,8 @@ Template.tickets.events
 				Tickets.remove {_id:this._id}
 			return
 
+# merchandising
+
 Template.merchandising.list = ()-> Merchandising.find {}
 
 Template.merchandising.events
@@ -243,6 +245,29 @@ Template.addmerchandising.events
 		return
 
 Template.addmerchandising.message = ()-> Session.get "merchandising_message"
+
+# tokens
+
+Template.tokens.list = ()-> Tokens.find {}
+
+Template.tokens.events
+	"click #removeTokens": (event,template)->
+		confirmed = confirm "Are you sure you want to cancel this token order?"
+		if confirmed
+			Tokens.remove {_id:this._id}
+		return
+
+Template.addtokens.events
+	"click #addTokens": (event,template)->
+		event.preventDefault()
+		Meteor.call "addtokens", (error)->
+			if error
+				Session.set "tokens_message", {text:error.message,style:"danger"}
+			else
+				Session.set "tokens_message", {text: "Your Tokens were added. Don't forget to checkout. Feel free to add more tokens with these same details, or close this modal if you don't need more.", style: "success"}
+		return
+
+Template.addtokens.message = ()-> Session.get "tokens_message"
 
 UI.registerHelper "admin", ()->
 	return Meteor.user() and Meteor.user().role is "admin"

@@ -107,6 +107,16 @@ Meteor.methods
 			paid: false
 		Merchandising.insert tshirt
 		return
+	"addtokens": (size)->
+		if !Meteor.userId()
+			throw new Meteor.Error 403, "You have to be logged in"
+		tokens=
+			owner: Meteor.userId()
+			created: new Date()
+			amount: 1
+			paid: false
+		Tokens.insert tokens
+		return
 
 Accounts.validateNewUser (user)->
 	if !user.emails || user.emails.length is 0

@@ -1,19 +1,19 @@
-<template name="merchandising">
-  <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#merchandising_modal">
-    Add T-shirt
+<template name="tokens">
+  <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#tokens_modal">
+    Add tokens
   </button>
-  <h2>Your T-shirts</h2>
+  <h2>Your tokens</h2>
   <table class="table table-striped">
     <tr>
-      <th width="55%">Size</th>
+      <th width="55%">Tokens</th>
       <th width="15%">Cost</th>
       <th width="15%">Payment status</th>
       <th width="15%"></th>
     </tr>
     {{#each list}}
       <tr>
-        <td>{{size}}</td>
-        <td>15€</td>
+        <td>10€ tokens</td>
+        <td>10€</td>
         <td>
           {{#if paid}}
             Paid
@@ -23,14 +23,14 @@
         </td>
         <td>
           {{#if paid}}
-            Paid T-shirts cannot be removed
+            Paid tokens cannot be removed
           {{else}}
-            <button id="removeMerchandising" class="btn btn-small btn-danger">Delete</button>
+            <button id="removeTokens" class="btn btn-small btn-danger">Delete</button>
           {{/if}}
         </td>
       </tr>
     {{/each}}
   </table>
   
-{{> addtokens}}
+{{> addmerchandising}}
 </template>

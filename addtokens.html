@@ -1,0 +1,26 @@
+<template name="addtokens">
+  
+  <div class="modal fade" id="tokens_modal">
+  	<div class="modal-dialog">
+  		<div class="modal-content">
+  			<div class="modal-header">
+  				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+  				<h4 class="modal-title">Add drink tokens to your order</h4>
+  			</div>
+  			<div class="modal-body">
+  				<!-- start modal contents -->
+
+          <h2>Drink tokens</h2>
+              <p class="help-block">In order not to minimize the amount of cash at camp, you can orders drink tokens online. We'll be selling drinks at democratic prices.</p>
+
+              <h2>Add a tokens to your order</h2>
+              <form role="form" class="form-inline">
+                <button type="submit" class="btn btn-primary" id="addTokens">Add 10€ tokens to my account</button>
+              </form>
+              <hr/>
+              {{#if message}}<p class="alert alert-{{message.style}}">{{message.text}}</p>{{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
