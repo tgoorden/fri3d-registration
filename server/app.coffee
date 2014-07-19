@@ -74,6 +74,23 @@ Meteor.methods
 			console.log EJSON.stringify user
 			email.to = user.emails[0].address
 			Email.send email
+	"addticket": (ticket)->
+		required = [
+			{"key":"first_name","label":"First name"}
+			{"key":"last_name","label":"Last name"}
+			{"key":"birthday","label":"Birthday"}
+			{"key":"type","label":"Ticket type"}
+		]
+		_.each required, (field)->
+			if !ticket[field.key] or ticket[field.key] is ""
+				throw new Meteor.Error 500, "#{field.label} is required"
+		pick = _.pick ticket, "first_name","last_name","birthday", "type", "volunteer","veggie","arrival","departure"
+		pick.owner = Meteor.userId()
+		tt = _.findWhere tickettypes, {type: ticket.type}
+		if !tt
+			throw new Meteor.Error 500, "Unknown ticket type: #{ticket.type}"
+		Tickets.insert pick
+		return
 
 Accounts.validateNewUser (user)->
 	if !user.emails || user.emails.length is 0

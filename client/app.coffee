@@ -185,8 +185,27 @@ Template.login.events
 
 Template.addticket.events
 	"click #submitTicket": (event,template)->
-		console.log "captured"
-		return
+			ticket =
+				first_name: template.find("#first_name").value
+				last_name: template.find("#last_name").value
+				birthday:  template.find("#birthday").value
+				type: template.find("#type").value
+				volunteer:
+					infobooth: template.find("#volunteer_infobooth").checked
+					security: template.find("#volunteer_security").checked
+					drinks: template.find("#volunteer_drinks").checked
+					standby: template.find("#volunteer_standby").checked
+					night: template.find("#volunteer_night").checked
+				veggie: template.find("#veggie").checked
+				arrival:
+					date:  template.find("#arrival_date").value
+					time:  template.find("#arrival_time").value
+				departure:
+					date:  template.find("#departure_date").value
+					time:  template.find("#departure_time").value
+			console.log EJSON.stringify ticket
+			
+			return
 
 Template.tickets.list = ()-> Tickets.find {}
 
@@ -195,3 +214,7 @@ Template.merchandising.list = ()-> Merchandising.find {}
 UI.registerHelper "admin", ()->
 	return Meteor.user() and Meteor.user().role is "admin"
 
+UI.registerHelper "ticketCost", (type)->
+	type =_.findWhere tickettypes, {type: ticket.type}
+	return type.cost 
+	
