@@ -325,11 +325,18 @@ Template.checkout.events
 					if error
 						Session.set "stripe_message", {text:error.message,style:"danger"}
 					else
-						Session.set "stripe_message", {text:"Your payment was succesfull!",style:"success"}
+						Session.set "payment_message", {text:"Your payment was succesfull!",style:"success"}
+						$('#stripeModal').modal('hide')
+		return
+	"click #stripeModal": (event,template)->
+		Session.set "stripe_message",null
+		Session.set "payment_message", null
+		return
 
 Template.checkout.loading = ()-> Session.get "loading"
 
 Template.checkout.stripe_message = ()-> Session.get "stripe_message"
+Template.checkout.payment_message = ()-> Session.get "payment_message"
 
 UI.registerHelper "admin", ()->
 	return Meteor.user() and Meteor.user().role is "admin"
