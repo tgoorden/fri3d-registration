@@ -91,9 +91,9 @@ Meteor.methods
 		tt = _.findWhere tickettypes, {type: ticket.type}
 		if !tt
 			throw new Meteor.Error 500, "Unknown ticket type: #{ticket.type}"
-		ticket.amount = tt.cost
-		ticket.paid = false
-		ticket.created = new Date()
+		pick.amount = tt.cost
+		pick.paid = false
+		pick.created = new Date()
 		Tickets.insert pick
 		return
 
