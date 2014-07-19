@@ -40,8 +40,10 @@
                     <option value="Kids1214">Kids 12-14</option>
                   </select>
                 </div>
-                <button type="submit" class="btn btn-primary" id="addMerchandising">Add t-shirt</button>
+                <button type="submit" class="btn btn-primary" id="addMerchandising">Add t-shirt to my order</button>
               </form>
+              <hr/>
+              {{#if message}}<p class="alert alert-{{message.style}}">{{message.text}}</p>{{/if}}
               <img src="tshirtsizes.png" width="100%">
         </div>
       </div>

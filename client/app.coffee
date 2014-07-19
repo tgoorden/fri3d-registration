@@ -238,7 +238,11 @@ Template.addmerchandising.events
 		Meteor.call "addmerchandising", size, (error)->
 			if error
 				Session.set "merchandising_message", {text:error.message,style:"danger"}
+			else
+				Session.set "merchandising_message", {text: "Your T-shirt was added. Don't forget to checkout. Feel free to add more T-shirts with these same details, or close this modal if you don't need more.", style: "success"}
 		return
+
+Template.addmerchandising.message = ()-> Session.get "merchandising_message"
 
 UI.registerHelper "admin", ()->
 	return Meteor.user() and Meteor.user().role is "admin"
