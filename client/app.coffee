@@ -181,6 +181,15 @@ Template.login.events
 			if error
 				Session.set "login_message", {text:error.reason,style:"danger"}
 		return
+	"click #user_registration": (event,template)->
+		event.preventDefault()
+		Session.set "login_message", null
+		email = template.find("#email").value.toLowerCase()
+		password = template.find("#password").value
+		Accounts.createUser {email:email,password:password}, (error)->
+			if error
+				Session.set "login_message", {text:error.reason,style:"danger"}
+		return
 	"click #alzheimer": (event,template)->
 		event.preventDefault()
 		email = template.find("#email").value
