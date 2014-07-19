@@ -1,0 +1,69 @@
+<template name="checkout">
+<div class="row">
+		<div class="col-md-8">
+				<h1 class="pull-right">Total:</h1>
+		</div>
+		<div class="col-md-4">
+				<h1 class="pull-right">{{total}} €</h1>
+		</div>
+</div>
+<div class="row">
+		<div class="col-md-12">
+				<button class="pull-right btn btn-primary" data-toggle="modal" data-target="#stripeModal">Checkout using Stripe (credit card)</button>
+		</div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="stripeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+				<div class="modal-content">
+						<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title" id="myModalLabel">Checkout using Stripe</h4>
+						</div>
+						<div class="modal-body">
+								<h1>Pay € {{total}} using VISA/MasterCard</h1>
+								<p>Note: Your credit card data is only sent to Stripe (our payment processor), it is never seen or stored on our own server.</p>
+								<ul>
+										<li><span class="expl">Creditkaart nummer: </span><input type="number" id="card_number" /></li>
+										<li><span class="expl">CVC: </span><input type="number" id="cvc_check"></li>
+										<li><span class="expl">Kaart type: </span><select id="card_type">
+												<option value="VISA">Visa</option>
+												<option value="MasterCard">MasterCard</option>
+										</select></li>
+										<li><span class="expl">Naam op kaart: </span><input type="text" id="name"></li>
+										<li><span class="expl">Vervalmaand: </span><select id="month">
+												<option value="1">1</option>
+												<option value="2">2</option>
+												<option value="3">3</option>
+												<option value="4">4</option>
+												<option value="5">5</option>
+												<option value="6">6</option>
+												<option value="7">7</option>
+												<option value="8">8</option>
+												<option value="9">9</option>
+												<option value="10">10</option>
+												<option value="11">11</option>
+												<option value="12">12</option>
+										</select></li>
+										<li><span class="expl">Vervaljaar: </span><select id="year">
+												<option value="2013">2013</option>
+												<option value="2014">2014</option>
+												<option value="2015">2015</option>
+												<option value="2016">2016</option>
+												<option value="2017">2017</option>
+												<option value="2018">2018</option>
+												<option value="2019">2019</option>
+												<option value="2020">2020</option>
+												<option value="2021">2021</option>
+										</select></li>
+								</ul>
+						</div>
+						<div class="modal-footer">
+						{{#if stripe_message}}<p class="alert alert-{{stripe_message.style}}">{{stripe_message.text}}</p>{{/if}}
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+								<button type="button" class="btn btn-primary" id="stripeCheckout">Pay now!</button>
+						</div>
+				</div>
+		</div>
+</div>
+</template>
