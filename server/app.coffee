@@ -11,6 +11,12 @@ Meteor.publish "userData", ()->
 		this.ready()
 	return
 
+Meteor.publish "tickets", ()-> Tickets.find {owner:this.userId}
+
+Meteor.publish "merchandising", ()-> Merchandising.find {owner:this.userId}
+
+Meteor.publish "tokens", ()-> Tokens.find {owner:this.userId}
+
 Meteor.methods
 	"register": (registration)->
 		if !Meteor.user()
