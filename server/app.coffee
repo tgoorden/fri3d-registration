@@ -75,7 +75,7 @@ Meteor.methods
 			email.to = user.emails[0].address
 			Email.send email
 	"addticket": (ticket)->
-		if !Meteor.user()
+		if !Meteor.userId()
 			throw new Meteor.Error 403, "You have to be logged in"
 		required = [
 			{"key":"first_name","label":"First name"}
@@ -95,6 +95,17 @@ Meteor.methods
 		pick.paid = false
 		pick.created = new Date()
 		Tickets.insert pick
+		return
+	"addmerchandising": (size)->
+		if !Meteor.userId()
+			throw new Meteor.Error 403, "You have to be logged in"
+		tshirt =
+			size: size
+			owner: Meteor.userId()
+			created: new Date()
+			amount: 15
+			paid: false
+		Merchandising.insert tshirt
 		return
 
 Accounts.validateNewUser (user)->

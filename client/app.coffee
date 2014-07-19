@@ -217,10 +217,28 @@ Template.tickets.list = ()-> Tickets.find {}
 
 Template.tickets.events
 	"click #removeTicket": (event,template)->
-			Tickets.remove {_id:this._id}
+			confirmed = confirm "Are you sure you want to delete this ticket?"
+			if confirmed
+				Tickets.remove {_id:this._id}
 			return
 
 Template.merchandising.list = ()-> Merchandising.find {}
+
+Template.merchandising.events
+	"click #removeMerchandising": (event,template)->
+		confirmed = confirm "Are you sure you want to cancel this T-shirt order?"
+		if confirmed
+			Merchandising.remove {_id:this._id}
+		return
+
+Template.addmerchandising.events
+	"click #addMerchandising": (event,template)->
+		event.preventDefault()
+		size = template.find("#size").value
+		Meteor.call "addmerchandising", size, (error)->
+			if error
+				Session.set "merchandising_message", {text:error.message,style:"danger"}
+		return
 
 UI.registerHelper "admin", ()->
 	return Meteor.user() and Meteor.user().role is "admin"
