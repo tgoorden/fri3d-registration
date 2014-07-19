@@ -1,11 +1,37 @@
- <template name="tickets">
- {{#each list}}
- {{first_name}}
- {{/each}}
- <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#ticket_modal">
-		   Add ticket
-   </button>
+<template name="tickets">
+  <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#ticket_modal">
+    Add ticket
+  </button>
+  <h2>Your tickets</h2>
+  <table class="table table-striped">
+    <tr>
+      <th>Ticket holder</th>
+      <th>Ticket type</th>
+      <th>Payment status</th>
+      <th>Remove ticket</th>
+    </tr>
+    {{#each list}}
+      <tr>
+        <td>{{first_name}} {{last_name}}</td>
+        <td>{{type}}</td>
+        <td>
+          {{#if paid}}
+            Paid
+          {{else}}
+            Not paid yet
+          {{/if}}
+        </td>
+        <td>
+          {{#if paid}}
+            Paid tickets cannot be removed
+          {{else}}
+            TODO: REMOVE LINK
+          {{/if}}
+        </td>
+      </tr>
+    {{/each}}
+  </table>
   {{> addticket}}
- </template>
+</template>
 
 
