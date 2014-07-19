@@ -17,3 +17,4 @@ accounts-google
 accounts-ui-bootstrap-3-blaze
 email
 force-ssl
+stripe

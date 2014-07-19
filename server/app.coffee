@@ -1,3 +1,5 @@
+@StripeLog = new Meteor.Collection 'stripelog'
+
 Meteor.publish "registrations", ()-> Registrations.find {},{fields:{remarks:0}}
 
 Meteor.publish "userData", ()->
@@ -6,7 +8,7 @@ Meteor.publish "userData", ()->
 		if user.role is "admin"
 			return Meteor.users.find {}, {fields:{"role":1,"emails":1}}
 		else
-			return user
+			return Meteor.users.find {_id:this.userId}, {fields:{"role":1}}
 	else
 		this.ready()
 	return
@@ -106,6 +108,35 @@ Meteor.methods
 			amount: 15
 			paid: false
 		Merchandising.insert tshirt
+		return
+	"creditcard_payment": (card) ->
+		if !Meteor.userId()
+			throw new Meteor.Error 403, 'You have to be logged in'
+		# let's get total charges
+		total = 0
+		ticket_ids = []
+		merchandising_ids = []
+		tokens_ids = []
+		Tickets.find({owner:Meteor.userId(),paid:false}).forEach (ticket)->
+			total += ticket.amount
+			ticket_ids.push ticket._id
+		Merchandising.find({owner:Meteor.userId(),paid:false}).forEach (merch)->
+			total += merch.amount
+			merchandising_ids.push merch._id
+		Tokens.find({owner:Meteor.userId(),paid:false}).forEach (token)->
+			total += token.amount
+			tokens_ids.push token._id
+		charge =
+			amount: total * 100
+			currency: "EUR"
+			card: card
+			description: 'Fri3d Camp - ref: ' + Meteor.userId()
+		console.log EJSON.stringify charge
+		result = HTTP.post "https://api.stripe.com/v1/charges", {params: charge,headers: {"content-type": "application/x-www-form-urlencoded"}, timeout: 20000, auth: Meteor.settings.stripe_sk + ':'}
+		StripeLog.insert({user:this.userId,'created':new Date(),result})
+		Tickets.update {_id:{$in:ticket_ids}},{$set:{paid:true}},{multi:true}
+		Merchandising.update {_id:{$in:merchandising_ids}},{$set:{paid:true}},{multi:true}
+		Tokens.update {_id:{$in:tokens_ids}},{$set:{paid:true}},{multi:true}
 		return
 
 Accounts.validateNewUser (user)->

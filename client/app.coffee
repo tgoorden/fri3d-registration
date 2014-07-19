@@ -1,3 +1,5 @@
+Stripe.setPublishableKey Meteor.settings.public.stripe_pk
+
 Router.configure
 	layoutTemplate: "layout"
 
@@ -239,6 +241,38 @@ Template.addmerchandising.events
 			if error
 				Session.set "merchandising_message", {text:error.message,style:"danger"}
 		return
+
+Template.checkout.total = ()->
+	total = 0
+	Tickets.find({paid:false}).forEach (ticket)-> total += ticket.amount
+	Merchandising.find({paid:false}).forEach (merch)-> total += merch.amount
+	return total
+
+Template.checkout.events
+	"click #stripeCheckout": (event,template)->
+		event.preventDefault()
+		Session.set "stripe_message", null
+		# Router.go '/loading'
+		# Session.set ""
+		card_number = template.find('#card_number').value
+		cvc_check = parseInt(template.find('#cvc_check').value)
+		type = template.find('#card_type').value
+		name = template.find('#name').value
+		exp_month = template.find('#month').value
+		exp_year = template.find('#year').value
+		card = {'number':card_number, 'exp_month':exp_month, 'exp_year':exp_year, 'cvc':cvc_check, 'name':name, 'type':type}
+		Stripe.card.createToken card, (status, response) ->
+			if response.error
+				Session.set "stripe_message", {text:response.error.message,style:"danger"}
+			else
+				card_token = response.id
+				Meteor.call 'creditcard_payment', card_token, (error, result) ->
+					if error
+						Session.set "stripe_message", {text:error.message,style:"danger"}
+					else
+						Session.set "stripe_message", {text:"Your payment was succesfull!",style:"success"}
+
+Template.checkout.stripe_message = ()-> Session.get "stripe_message"
 
 UI.registerHelper "admin", ()->
 	return Meteor.user() and Meteor.user().role is "admin"
