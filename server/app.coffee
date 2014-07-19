@@ -126,18 +126,24 @@ Meteor.methods
 			throw new Meteor.Error 403, 'You have to be logged in'
 		# let's get total charges
 		total = 0
+		ticket_amount = 0
+		tshirt_amount = 0
+		tokens_amount = 0
 		ticket_ids = []
 		merchandising_ids = []
 		tokens_ids = []
 		Tickets.find({owner:Meteor.userId(),paid:false}).forEach (ticket)->
 			total += ticket.amount
 			ticket_ids.push ticket._id
+			ticket_amount += 1
 		Merchandising.find({owner:Meteor.userId(),paid:false}).forEach (merch)->
 			total += merch.amount
 			merchandising_ids.push merch._id
+			tshirt_amount += 1
 		Tokens.find({owner:Meteor.userId(),paid:false}).forEach (token)->
 			total += token.amount
 			tokens_ids.push token._id
+			tokens_amount += 1
 		charge =
 			amount: total * 100
 			currency: "EUR"
@@ -149,6 +155,22 @@ Meteor.methods
 		Tickets.update {_id:{$in:ticket_ids}},{$set:{paid:true}},{multi:true}
 		Merchandising.update {_id:{$in:merchandising_ids}},{$set:{paid:true}},{multi:true}
 		Tokens.update {_id:{$in:tokens_ids}},{$set:{paid:true}},{multi:true}
+		email =
+			from: "Fri3d Camp Support <general@support.fri3d.be>"
+			to: Meteor.user().emails[0].address
+			subject: "Thank you for your Fri3d Camp order"
+			text: "Dear hacker,\n\n
+
+				You have successfully ordered #{ticket_amount} ticket(s), #{tshirt_amount} T-shirt(s) and #{tokens_amount} x 10 tokens for Fri3d Camp.
+\n\n
+				Your order will be made available at the registration booth, you can pick them up when you arrive.
+\n\n
+				In the mean time, please join the wiki at http://fri3d.be (the secret is 'stoofvlees') and contribute, as this camp is organized as a wiki and your input is very welcome!
+\n\n
+				Also check out the mailing list at https://groups.google.com/forum/#!forum/belgian-summer-hackercamp-2014 where we discuss organizational topics.
+\n\n
+				The Fri3d Camp team"
+		Email.send email
 		return
 
 Accounts.validateNewUser (user)->
