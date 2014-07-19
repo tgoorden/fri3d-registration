@@ -210,7 +210,7 @@ Template.addticket.events
 				if error
 					Session.set "ticket_message", {text:error.reason,style:"danger"}
 				else
-					Session.set "ticket_message", {text: "Your ticket was added. Don't forget to checkout", style: "success"}
+					Session.set "ticket_message", {text: "Your ticket was added. Don't forget to checkout. Feel free to add more tickets with these same details, or press cancel if you don't need more tickets.", style: "success"}
 			return
 
 Template.addticket.message = ()-> Session.get "ticket_message"
@@ -223,6 +223,8 @@ Template.tickets.events
 			if confirmed
 				Tickets.remove {_id:this._id}
 			return
+
+# merchandising
 
 Template.merchandising.list = ()-> Merchandising.find {}
 
@@ -240,12 +242,41 @@ Template.addmerchandising.events
 		Meteor.call "addmerchandising", size, (error)->
 			if error
 				Session.set "merchandising_message", {text:error.message,style:"danger"}
+			else
+				Session.set "merchandising_message", {text: "Your T-shirt was added. Don't forget to checkout. Feel free to add more T-shirts with these same details, or close this modal if you don't need more.", style: "success"}
 		return
 
+Template.addmerchandising.message = ()-> Session.get "merchandising_message"
+
+# tokens
+
+Template.tokens.list = ()-> Tokens.find {}
+
+Template.tokens.events
+	"click #removeTokens": (event,template)->
+		confirmed = confirm "Are you sure you want to cancel this token order?"
+		if confirmed
+			Tokens.remove {_id:this._id}
+		return
+
+Template.addtokens.events
+	"click #addTokens": (event,template)->
+		event.preventDefault()
+		Meteor.call "addtokens", (error)->
+			if error
+				Session.set "tokens_message", {text:error.message,style:"danger"}
+			else
+				Session.set "tokens_message", {text: "Your Tokens were added. Don't forget to checkout. Feel free to add more tokens with these same details, or close this modal if you don't need more.", style: "success"}
+		return
+
+Template.addtokens.message = ()-> Session.get "tokens_message"
+
+# Checkout!
 Template.checkout.total = ()->
 	total = 0
 	Tickets.find({paid:false}).forEach (ticket)-> total += ticket.amount
 	Merchandising.find({paid:false}).forEach (merch)-> total += merch.amount
+	Tokens.find({paid:false}).forEach (token)-> total += token.amount
 	return total
 
 Template.checkout.events

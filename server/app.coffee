@@ -109,6 +109,16 @@ Meteor.methods
 			paid: false
 		Merchandising.insert tshirt
 		return
+	"addtokens": (size)->
+		if !Meteor.userId()
+			throw new Meteor.Error 403, "You have to be logged in"
+		tokens=
+			owner: Meteor.userId()
+			created: new Date()
+			amount: 10
+			paid: false
+		Tokens.insert tokens
+		return
 	"creditcard_payment": (card) ->
 		if !Meteor.userId()
 			throw new Meteor.Error 403, 'You have to be logged in'
