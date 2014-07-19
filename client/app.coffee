@@ -5,6 +5,10 @@ Router.configure
 
 Meteor.subscribe "userData"
 
+Meteor.subscribe "tickets"
+Meteor.subscribe "merchandising"
+Meteor.subscribe "tokens"
+
 Router.map ()->
 	this.route "welcome",
 			path: "/"
