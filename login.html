@@ -1,0 +1,37 @@
+<template name="login">
+
+{{#if currentUser}}
+<div class="header row">
+		<div class="col-md-11">
+				<p>Currently logged in with {{#each currentUser.emails}}{{address}}{{/each}}.</p>
+		</div>
+		<div class="col-md-1">
+		<button id="logout" class="btn btn-warning">Logout</button>
+		</div>
+</div>
+{{else}}
+	<div class="row">
+	<div class="col-md-12">
+		<p>Please login using the email address and password you pre-registered with. (If you are unsure about the email address, check where you received our emails.)
+		</p>
+	</div>
+	</div>
+				<div class="row">
+						<div class="col-md-6">
+								<label>Email address:</label>
+								<input id="email" class="form-control login"/>
+						</div>
+						<div class="col-md-6">
+								<label>Password or enter your existing one:</label>
+								<input id="password" type="password" class="form-control login"/>
+						</div>
+				</div>
+				<div class="row">
+				<div class="col-md-12">
+						{{#if message}}<p class="alert alert-{{message.style}}">{{message.text}}</p>{{/if}}
+				<button id="login" class="btn btn-primary">Login</button>
+				<a href="#" id="alzheimer">Forgot your password? Fill out your email address and click here.</a>
+				</div>
+				</div>
+{{/if}}				
+</template>

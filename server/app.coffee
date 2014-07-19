@@ -1,5 +1,16 @@
 Meteor.publish "registrations", ()-> Registrations.find {},{fields:{remarks:0}}
 
+Meteor.publish "userData", ()->
+	if this.userId
+		user =  Meteor.users.findOne {_id:this.userId}, {fields:{"role":1}}
+		if user.role is "admin"
+			return Meteor.users.find {}, {fields:{"role":1,"emails":1}}
+		else
+			return user
+	else
+		this.ready()
+	return
+
 Meteor.methods
 	"register": (registration)->
 		if !Meteor.user()
@@ -41,12 +52,22 @@ Meteor.methods
 		Email.send email
 		return
 	"user_exists": (email)->
-		console.log "Checking email #{email}"
+		# console.log "Checking email #{email}"
 		user = Meteor.users.findOne({"emails.address":email})
 		if user
 			return true
 		return
-
+	"mailing": (subject,body)->
+		if !Meteor.user() or Meteor.user().role isnt "admin"
+			throw new Meteor.Error 403,"You have to be logged in as administrator"
+		email =
+			from: "Fri3d Camp Support <general@support.fri3d.be>"
+			subject: subject
+			text: body
+		Meteor.users.find({}).forEach (user)->
+			console.log EJSON.stringify user
+			email.to = user.emails[0].address
+			Email.send email
 
 Accounts.validateNewUser (user)->
 	if !user.emails || user.emails.length is 0

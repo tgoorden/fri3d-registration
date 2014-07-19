@@ -3,6 +3,7 @@ Router.configure
 
 @RegistrationSub = Meteor.subscribe "registrations"
 
+Meteor.subscribe "userData"
 
 Router.map ()->
 	this.route "welcome",
@@ -10,6 +11,9 @@ Router.map ()->
 	this.route "practical", {}
 	this.route "pricing", {}
 	this.route "preregistration", {}
+	this.route "mailing"
+	this.route "users"
+	this.route "ticketing"
 
 Template.navigation.style = (path)->
 	style = if Router.current() and  Router.current().route.name is path then "active" else "inactive"
@@ -125,3 +129,53 @@ Template.registration.events
 		if confirmed
 			Registrations.remove {_id:this._id}
 		return
+
+Template.mailing.events
+	"click #send": (event,template)->
+		event.preventDefault()
+		if confirm "Are you sure you want to send this to all registered users?"
+				subject = template.find("#subject").value
+				text = template.find("#text").value
+				Meteor.call "mailing", subject, text, (error)->
+					if error
+						alert error
+					else
+						alert "Mailing was sent!"
+
+Template.users.list = ()-> Meteor.users.find {}
+
+Template.users.helpers
+	"registrations": (_id)-> Registrations.find {owner: _id}
+
+Template.login.message = ()-> Session.get "login_message"
+
+Template.login.events
+	"click #logout": (event,template)->
+		Meteor.logout()
+		return
+	"click #login": (event,template)->
+		event.preventDefault()
+		Session.set "login_message", null
+		email = template.find("#email").value
+		password = template.find("#password").value
+		Meteor.loginWithPassword email,password, (error)->
+			if error
+				Session.set "login_message", {text:error.reason,style:"danger"}
+		return
+	"click #alzheimer": (event,template)->
+		event.preventDefault()
+		email = template.find("#email").value
+		if !email or email is ""
+			Session.set "login_message", {text:"Please provide an email address",style:"danger"}
+			return
+		email = email.toLowerCase()
+		Accounts.forgotPassword {email:email}, (error)->
+			if error
+				Session.set "login_message", {text:error.reason,style:"danger"}
+			else
+				Session.set "login_message", {text:"Check your mail!",style:"success"}
+		return
+
+UI.registerHelper "admin", ()->
+	return Meteor.user() and Meteor.user().role is "admin"
+
