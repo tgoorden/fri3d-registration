@@ -208,7 +208,7 @@ Template.addticket.events
 				if error
 					Session.set "ticket_message", {text:error.reason,style:"danger"}
 				else
-					Session.set "ticket_message", {text: "Your ticket was added. Don't forget to checkout", style: "success"}
+					Session.set "ticket_message", {text: "Your ticket was added. Don't forget to checkout. Feel free to add more tickets with these same details, or press cancel if you don't need more tickets.", style: "success"}
 			return
 
 Template.addticket.message = ()-> Session.get "ticket_message"
