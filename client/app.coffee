@@ -86,10 +86,19 @@ Template.jumbotron.statistics = ()->
 		statistics =
 			total: 256
 			preregistrations: 0
+			total_preregistrations: 0
+			tickets: 0
+			total_tickets: 0
 		_.each Registrations.find({}).fetch(), (registration)->
-			statistics.preregistrations += registration.amount
-		statistics.remaining = statistics.total - statistics.preregistrations
-		if statistics.remaining < 1
+			statistics.total_preregistrations += registration.amount
+			if registration.owner is Meteor.userId()
+				statistics.preregistrations += registration.amount
+		Tickets.find({}).forEach (ticket)->
+			if ticket.owner is Meteor.userId() and ticket.paid
+				statistics.tickets += 1
+			statistics.total_tickets += 1
+		statistics.remaining = statistics.total - statistics.total_tickets
+		if statistics.remaining < 0
 			statistics.soldout = true
 			statistics.style = "soldout"
 		else

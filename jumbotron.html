@@ -58,33 +58,40 @@
 				<div class="col-md-4 text-center">
 						<div class="panel panel-default">
 								<div class="panel-body">
-										<h1><strong>{{statistics.preregistrations}}</strong></h1>
+										<h1><strong>{{statistics.tickets}}</strong></h1>
 								</div>
 								<div class="panel-heading">
-										<h3>pre-registrations</h3>
+										<h3>your tickets</h3>
 								</div>
 						</div>
 				</div>
 				<div class="col-md-4 text-center">
 						<div class="panel panel-default">
 								<div class="panel-body">
-										<h1><strong>{{statistics.total}}</strong></h1>
+										<h1><strong>{{statistics.total_tickets}}</strong></h1>
 								</div>
 								<div class="panel-heading">
-										<h3><strong>tickets to be sold</strong></h3>
+										<h3><strong>tickets sold</strong></h3>
 								</div>
 						</div>
 				</div>
 				<div class="col-md-4 text-center">
 						<div class="panel panel-default">
 								<div class="panel-body">
-										<h1 class="{{statistics.style}}"><strong>{{statistics.remaining}}</strong></h1>
+										<h1><strong>{{statistics.remaining}}</strong></h1>
 								</div>
 								<div class="panel-heading">
-										<h3><strong>remaining</strong></h3>
+										<h3><strong>tickets remaining</strong></h3>
 								</div>
 						</div>
 				</div>
+		</div>
+		<div class="row">
+				<div class="col-md-12">
+					{{#if statistics.preregistrations}}
+					<p>(You have {{statistics.preregistrations}} ticket reservations. Make sure to use them!)</p>
+					{{/if}}
+			</div>
 		</div>
 		{{#if statistics.soldout}}
 		<div class="alert alert-danger">
