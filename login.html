@@ -1,9 +1,9 @@
 <template name="login">
 
 {{#if currentUser}}
-<div class="header row">
+<div class="header row" style="padding-top:20px;">
 		<div class="col-md-11">
-				<p>Currently logged in with {{#each currentUser.emails}}{{address}}{{/each}}.</p>
+				<p>Currently logged in as {{#each currentUser.emails}}{{address}}{{/each}}.</p>
 		</div>
 		<div class="col-md-1">
 		<button id="logout" class="btn btn-warning">Logout</button>
