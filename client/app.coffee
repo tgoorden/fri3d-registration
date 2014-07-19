@@ -92,7 +92,7 @@ Template.jumbotron.statistics = ()->
 			statistics.total_preregistrations += registration.amount
 			if registration.owner is Meteor.userId()
 				statistics.preregistrations += registration.amount
-		Tickets.find({}).forEach (ticket)->
+		Tickets.find({paid:true}).forEach (ticket)->
 			if ticket.owner is Meteor.userId() and ticket.paid
 				statistics.tickets += 1
 			statistics.total_tickets += 1
