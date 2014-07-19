@@ -14,6 +14,9 @@ Router.map ()->
 	this.route "mailing"
 	this.route "users"
 	this.route "ticketing"
+	this.route "addticket"
+	this.route "addmerchandising"
+	this.route "addtokens"
 
 Template.navigation.style = (path)->
 	style = if Router.current() and  Router.current().route.name is path then "active" else "inactive"
