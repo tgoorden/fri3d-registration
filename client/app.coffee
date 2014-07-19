@@ -215,6 +215,6 @@ UI.registerHelper "admin", ()->
 	return Meteor.user() and Meteor.user().role is "admin"
 
 UI.registerHelper "ticketCost", (type)->
-	type =_.findWhere tickettypes, {type: ticket.type}
+	type =_.findWhere tickettypes, {type: type}
 	return type.cost 
 	
