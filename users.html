@@ -1,0 +1,19 @@
+<template name="users">
+<h1>Overview of users</h1>
+<table class="table table-striped">
+{{#each list}}
+<tr>
+<td>{{#each emails}}
+		{{address}}
+		{{/each}}</td>
+<td>
+		<ul>
+		{{#each registrations _id}}
+		<li>{{type}}: {{amount}} tickets</li>
+		{{/each}}
+</ul>
+</td>
+</tr>
+{{/each}}
+</table>
+</template>
