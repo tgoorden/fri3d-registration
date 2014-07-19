@@ -21,6 +21,9 @@
 								<h4 class="modal-title" id="myModalLabel">Checkout using Stripe</h4>
 						</div>
 						<div class="modal-body">
+							{{#if loading}}
+							<p>Processing... Please be patient.</p>
+							{{else}}
 								<h1>Pay € {{total}} using VISA/MasterCard</h1>
 								<p>Note: Your credit card data is only sent to Stripe (our payment processor), it is never seen or stored on our own server.</p>
 								<ul>
@@ -57,6 +60,7 @@
 												<option value="2021">2021</option>
 										</select></li>
 								</ul>
+								{{/if}}
 						</div>
 						<div class="modal-footer">
 						{{#if stripe_message}}<p class="alert alert-{{stripe_message.style}}">{{stripe_message.text}}</p>{{/if}}

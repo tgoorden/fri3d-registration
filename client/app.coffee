@@ -306,7 +306,7 @@ Template.checkout.events
 		event.preventDefault()
 		Session.set "stripe_message", null
 		# Router.go '/loading'
-		# Session.set ""
+		Session.set "loading",true
 		card_number = template.find('#card_number').value
 		cvc_check = parseInt(template.find('#cvc_check').value)
 		type = template.find('#card_type').value
@@ -316,14 +316,18 @@ Template.checkout.events
 		card = {'number':card_number, 'exp_month':exp_month, 'exp_year':exp_year, 'cvc':cvc_check, 'name':name, 'type':type}
 		Stripe.card.createToken card, (status, response) ->
 			if response.error
+				Session.set "loading", false
 				Session.set "stripe_message", {text:response.error.message,style:"danger"}
 			else
 				card_token = response.id
 				Meteor.call 'creditcard_payment', card_token, (error, result) ->
+					Session.set "loading", false
 					if error
 						Session.set "stripe_message", {text:error.message,style:"danger"}
 					else
 						Session.set "stripe_message", {text:"Your payment was succesfull!",style:"success"}
+
+Template.checkout.loading = ()-> Session.get "loading"
 
 Template.checkout.stripe_message = ()-> Session.get "stripe_message"
 
