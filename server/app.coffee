@@ -15,6 +15,8 @@ Meteor.publish "userData", ()->
 
 Meteor.publish "tickets", ()-> Tickets.find {owner:this.userId}
 
+Meteor.publish "other_tickets", ()-> Tickets.find {owner:{$ne:this.userId}},{fields:{"_id":1}}
+
 Meteor.publish "merchandising", ()-> Merchandising.find {owner:this.userId}
 
 Meteor.publish "tokens", ()-> Tokens.find {owner:this.userId}

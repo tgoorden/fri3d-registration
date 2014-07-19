@@ -8,6 +8,7 @@ Router.configure
 Meteor.subscribe "userData"
 
 Meteor.subscribe "tickets"
+Meteor.subscribe "other_tickets"
 Meteor.subscribe "merchandising"
 Meteor.subscribe "tokens"
 
@@ -215,7 +216,7 @@ Template.addticket.events
 
 Template.addticket.message = ()-> Session.get "ticket_message"
 
-Template.tickets.list = ()-> Tickets.find {}
+Template.tickets.list = ()-> Tickets.find {owner:Meteor.userId()}
 
 Template.tickets.events
 	"click #removeTicket": (event,template)->
