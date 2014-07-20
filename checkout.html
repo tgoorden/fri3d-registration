@@ -10,7 +10,10 @@
 <div class="row">
 		<div class="col-md-12">
 			{{#if payment_message}}<p class="alert alert-{{payment_message.style}}">{{payment_message.text}}</p>{{/if}}
-				<button id="toggleStripe" class="pull-right btn btn-primary" data-toggle="modal" data-target="#stripeModal">Checkout using Stripe (credit card)</button>
+				<div class="pull-right">
+					<p><button id="toggleStripe" class="btn btn-primary" data-toggle="modal" data-target="#stripeModal">Checkout using Stripe (credit card)</button></p>
+					<p><button class="btn btn-primary disabled">Checkout with other payment options (later this week)</button></p>
+				</div>
 		</div>
 </div>
 <!-- Modal -->
