@@ -11,12 +11,13 @@
 		<div class="col-md-12">
 			{{#if payment_message}}<p class="alert alert-{{payment_message.style}}">{{payment_message.text}}</p>{{/if}}
 				<div class="pull-right">
-					<p><button id="toggleStripe" class="btn btn-primary" data-toggle="modal" data-target="#stripeModal">Checkout using Stripe (credit card)</button></p>
-					<p><button class="btn btn-primary disabled">Checkout with other payment options (later this week)</button></p>
+					<p><button id="toggleStripe" class="btn btn-primary" data-toggle="modal" data-target="#stripeModal">Checkout using Stripe (credit card)</button>
+					<button id="toggleWire" class="btn btn-primary" data-toggle="modal" data-target="#wireModal">Checkout using wire transfer</button></p>
 				</div>
 		</div>
 </div>
-<!-- Modal -->
+
+<!-- Stripe Modal -->
 <div class="modal fade" id="stripeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 				<div class="modal-content">
@@ -28,7 +29,7 @@
 							{{#if loading}}
 							<p>Processing... Please be patient.</p>
 							{{else}}
-								<h1>Pay € {{total}} using VISA/MasterCard</h1>
+								<h1>Pay €{{total}} using VISA/MasterCard</h1>
 								<p>Note: Your credit card data is only sent to Stripe (our payment processor), it is never seen or stored on our own server.</p>
 									<div class="form-group">
 											<label for="card_number">Credit card number</label>
@@ -91,4 +92,32 @@
 				</div>
 		</div>
 </div>
+
+<!-- Wire transfer Modal -->
+<div class="modal fade" id="wireModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+				<div class="modal-content">
+						<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+								<h4 class="modal-title" id="myModalLabel">Checkout using wire transfer</h4>
+						</div>
+						<div class="modal-body">
+							<p>In order to pay via wire transfer, please transfer your open amount with the following details:</p>
+							<p>
+								<ul>
+									<li>Amount: <strong>€{{total}}</strong>,</li>
+									<li>Receiver: <strong>2Know BVBA</strong>, Peyerstraat 35, 2223 Schriek</li>
+									<li>IBAN: <strong>BE34 3200 0725 7690</strong></li>
+									<li>Message: <strong>FRI3D {{#each currentUser.emails}}{{sanitize address}}{{/each}}</strong></li>
+								</ul>
+							</p>
+							<p>Please make sure that we receive your payment well <strong>before August 1st</strong>. Orders paid after August 1st are not guaranteed to be accepted.</p>
+							<p>Upon receival of your payment, we will send you an e-mail to confirm your order and set your order status to paid.</p>
+							<p>Please make sure that your order is complete before sending out your wire transfer. Items added after your wire transfer need to be paid seperately.</p>
+							<p>In case of trouble, contact us via <a href="mailto:general@support.fri3d.be">general@support.fri3d.be</a></p>
+						</div>
+				</div>
+		</div>
+</div>
+
 </template>
