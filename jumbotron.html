@@ -57,36 +57,17 @@
 
 		<hr/>
 		<div class="row">
-				<div class="col-md-4 text-center">
-						<div class="panel panel-default">
+				<div class="col-md-12 text-center">
+						<div class="panel panel-danger">
 								<div class="panel-body">
-										<h1><strong>{{statistics.tickets}}</strong></h1>
-								</div>
-								<div class="panel-heading">
-										<h3><strong>Your tickets</strong></h3>
+							{{#if closed}}
+							<h2>The ticket shop is officially closed. You can still place orders, but purchases are no longer guaranteed. Please contact <a href="mailto:general@support.fri3d.be">general@support.fri3d.be</a></h2>
+							{{else}}
+							<h2>The ticket shop will close {{countdown}}!</h2>
+							{{/if}}
 								</div>
 						</div>
-				</div>
-				<div class="col-md-4 text-center">
-						<div class="panel panel-default">
-								<div class="panel-body">
-										<h1><strong>{{statistics.total_tickets}}</strong></h1>
-								</div>
-								<div class="panel-heading">
-										<h3><strong>Tickets sold</strong></h3>
-								</div>
-						</div>
-				</div>
-				<div class="col-md-4 text-center">
-						<div class="panel panel-default">
-								<div class="panel-body">
-										<h1><strong>{{statistics.remaining}}</strong></h1>
-								</div>
-								<div class="panel-heading">
-										<h3><strong>Tickets remaining</strong></h3>
-								</div>
-						</div>
-				</div>
+			</div>
 		</div>
 		<div class="row">
 				<div class="col-md-12">

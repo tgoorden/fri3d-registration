@@ -106,18 +106,22 @@ Template.jumbotron.statistics = ()->
 
 # The countdown timer:
 countDown = ()->
-	launch = moment.utc(Meteor.settings.public.launch)
+	deadline = moment.utc(Meteor.settings.public.deadline)
 	now = moment.utc()
-	Session.set "countdown", launch.fromNow()
-	if now.isAfter(launch)
-		Session.set "launched", true
+	Session.set "countdown", deadline.fromNow()
+	if now.isAfter(deadline)
+		Session.set "deadline_reached", true
 		id = Session.get "countdown_id"
 		if id
 			Meteor.clearInterval id
 
 Meteor.startup ()->
-	Session.set "launched", false
+	Session.set "deadline_reached", false
 	countdown_id = Meteor.setInterval countDown, 1000
+	Session.set "countdown_id", countdown_id
+
+Template.jumbotron.countdown = ()-> Session.get "countdown"
+Template.jumbotron.closed = ()-> Session.get "deadline_reached"
 
 Template.preregister.open = ()-> Session.get "launched"
 
@@ -378,3 +382,6 @@ UI.registerHelper "admin", ()->
 UI.registerHelper "ticketCost", (type)->
 	type =_.findWhere tickettypes, {type: type}
 	return type.cost 
+
+UI.registerHelper "format", (date)->
+	return moment(date).format("DD/MM HH:mm")

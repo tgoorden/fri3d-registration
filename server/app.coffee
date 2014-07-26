@@ -184,9 +184,9 @@ Meteor.methods
 		user = Meteor.users.findOne _id:userId
 		if !user
 			throw new Meteor.Error 404, "User not found"
-		ticket_amount = Tickets.update {owner:userId,paid:false},{$set:{paid:true}},{multi:true}
-		tshirt_amount = Merchandising.update {owner:userId,paid:false},{$set:{paid:true}},{multi:true}
-		tokens_amount = Tokens.update {owner:userId,paid:false},{$set:{paid:true}},{multi:true}
+		ticket_amount = Tickets.update {owner:userId,paid:false},{$set:{paid:true,manual:true,admin:Meteor.userId()}},{multi:true}
+		tshirt_amount = Merchandising.update {owner:userId,paid:false},{$set:{paid:true,manual:true,admin:Meteor.userId()}},{multi:true}
+		tokens_amount = Tokens.update {owner:userId,paid:false},{$set:{paid:true,manual:true,admin:Meteor.userId()}},{multi:true}
 		email =
 			from: "Fri3d Camp Support <general@support.fri3d.be>"
 			to: user.emails[0].address
