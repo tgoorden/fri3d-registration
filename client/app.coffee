@@ -331,9 +331,9 @@ Template.addtokens.message = ()-> Session.get "tokens_message"
 # Checkout!
 Template.checkout.total = ()->
 	total = 0
-	Tickets.find({paid:false}).forEach (ticket)-> total += ticket.amount
-	Merchandising.find({paid:false}).forEach (merch)-> total += merch.amount
-	Tokens.find({paid:false}).forEach (token)-> total += token.amount
+	Tickets.find({owner:Meteor.userId(),paid:false}).forEach (ticket)-> total += ticket.amount
+	Merchandising.find({owner:Meteor.userId(),paid:false}).forEach (merch)-> total += merch.amount
+	Tokens.find({owner:Meteor.userId(),paid:false}).forEach (token)-> total += token.amount
 	return total
 
 Template.checkout.events
