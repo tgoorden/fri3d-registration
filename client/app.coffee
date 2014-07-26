@@ -369,6 +369,9 @@ Template.checkout.loading = ()-> Session.get "loading"
 Template.checkout.stripe_message = ()-> Session.get "stripe_message"
 Template.checkout.payment_message = ()-> Session.get "payment_message"
 
+UI.registerHelper "sanitize", ( email )->
+  return email.replace(/\W+/g, " ").toUpperCase()
+
 UI.registerHelper "admin", ()->
 	return Meteor.user() and Meteor.user().role is "admin"
 
