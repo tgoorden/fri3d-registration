@@ -1,6 +1,8 @@
 <template name="users">
 <h1>Overview of users</h1>
 <table class="table table-striped">
+
+<tbody>
 {{#each list}}
 <tr>
 <td>{{#each emails}}
@@ -13,7 +15,56 @@
 		{{/each}}
 </ul>
 </td>
+<td>
+<table class="table table-striped">
+		{{#each tickets _id}}
+		<tr>
+				<td><i class="fa fa-ticket"></i></td>
+				<td>{{type}}</td>
+				<td>{{created}}</td>
+				<td>{{amount}} €</td>
+				<td>{{#if paid}}<span class="glyphicon glyphicon-ok"></span>{{else}}<span class="glyphicon glyphicon-euro unpaid"></span>{{/if}}</td>
+		</tr>
+		{{/each}}
+		{{#each merchandising _id}}
+		<tr>
+				<td><i class="fa fa-gift"></i></td>
+				<td>{{size}}</td>
+				<td>{{created}}</td>
+				<td>{{amount}} €</td>
+				<td>{{#if paid}}<span class="glyphicon glyphicon-ok"></span>{{else}}<span class="glyphicon glyphicon-euro unpaid"></span>{{/if}}</td>
+		</tr>
+		{{/each}}
+		{{#each tokens _id}}
+		<tr>
+				<td><i class="fa fa-money"></i></td>
+				<td>10 tokens</td>
+				<td>{{created}}</td>
+				<td>{{amount}} €</td>
+				<td>{{#if paid}}<span class="glyphicon glyphicon-ok"></span>{{else}}<span class="glyphicon glyphicon-euro unpaid"></span>{{/if}}</td>
+		</tr>
+		{{/each}}
+		{{#with total _id}}
+		<tr class="total">
+				<td colspan="3">Total paid:</td>
+				<td>{{paid}} €</td>
+				<td>&nbsp;</td>	
+		</tr>
+		{{#if pending}}
+		<tr class="total">
+				<td colspan="3">Total unpaid:</td>
+				<td>{{unpaid}} €</td>
+				<td>&nbsp;</td>	
+		</tr>
+		<tr class="total">
+				<td colspan="5"><button class="confirm btn btn-small btn-success">Confirm {{unpaid}} € was paid</button></td>
+		</tr>
+		{{/if}}
+		{{/with}}
+</table>
+</td>
 </tr>
 {{/each}}
+</tbody>
 </table>
 </template>
