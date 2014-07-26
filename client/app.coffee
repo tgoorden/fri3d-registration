@@ -283,7 +283,7 @@ Template.tickets.events
 
 # merchandising
 
-Template.merchandising.list = ()-> Merchandising.find {}
+Template.merchandising.list = ()-> Merchandising.find {owner:Meteor.userId()}
 
 Template.merchandising.events
 	"click #removeMerchandising": (event,template)->
@@ -307,7 +307,7 @@ Template.addmerchandising.message = ()-> Session.get "merchandising_message"
 
 # tokens
 
-Template.tokens.list = ()-> Tokens.find {}
+Template.tokens.list = ()-> Tokens.find {owner:Meteor.userId()}
 
 Template.tokens.events
 	"click #removeTokens": (event,template)->

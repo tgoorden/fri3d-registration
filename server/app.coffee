@@ -19,13 +19,31 @@ Meteor.publish "other_tickets", ()->
 	if this.userId
 		user =  Meteor.users.findOne {_id:this.userId}, {fields:{"role":1}}
 		if user.role is "admin"
-			Tickets.find {owner:{$ne:this.userId}}
+			return Tickets.find {owner:{$ne:this.userId}}
 		else
-			Tickets.find {owner:{$ne:this.userId},paid:true},{fields:{"_id":1,"paid":1}}
+			return Tickets.find {owner:{$ne:this.userId},paid:true},{fields:{"_id":1,"paid":1}}
+	else
+		return
 
-Meteor.publish "merchandising", ()-> Merchandising.find {owner:this.userId}
+Meteor.publish "merchandising", ()-> 
+	if this.userId
+		user =  Meteor.users.findOne {_id:this.userId}, {fields:{"role":1}}
+		if user.role is "admin"
+			return Merchandising.find {owner:this.userId}
+		else
+			return Merchandising.find {}
+	else
+		return
 
-Meteor.publish "tokens", ()-> Tokens.find {owner:this.userId}
+Meteor.publish "tokens", ()->
+	if this.userId
+		user =  Meteor.users.findOne {_id:this.userId}, {fields:{"role":1}}
+		if user.role is "admin"
+			return Tokens.find {owner:this.userId}
+		else
+			return Tokens.find {}
+	else
+		return
 
 Meteor.methods
 	"register": (registration)->
