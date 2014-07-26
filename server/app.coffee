@@ -178,6 +178,32 @@ Meteor.methods
 				The Fri3d Camp team"
 		Email.send email
 		return
+	"confirm_payment": (userId,amount)->
+		if !Meteor.user() or Meteor.user().role isnt "admin"
+			throw new Meteor.Error 403,"You have to be logged in as administrator"
+		user = Meteor.users.findOne _id:userId
+		if !user
+			throw new Meteor.Error 404, "User not found"
+		ticket_amount = Tickets.update {owner:userId,paid:false},{$set:{paid:true}},{multi:true}
+		tshirt_amount = Merchandising.update {owner:userId,paid:false},{$set:{paid:true}},{multi:true}
+		tokens_amount = Tokens.update {owner:userId,paid:false},{$set:{paid:true}},{multi:true}
+		email =
+			from: "Fri3d Camp Support <general@support.fri3d.be>"
+			to: user.emails[0].address
+			subject: "Thank you for your Fri3d Camp order"
+			text: "Dear hacker,\n\n
+
+				We have received your payment for #{ticket_amount} ticket(s), #{tshirt_amount} T-shirt(s) and #{tokens_amount} x 10 tokens for Fri3d Camp.
+\n\n
+				Your order will be made available at the registration booth, you can pick them up when you arrive.
+\n\n
+				In the mean time, please join the wiki at http://fri3d.be (the secret is 'stoofvlees') and contribute, as this camp is organized as a wiki and your input is very welcome!
+\n\n
+				Also check out the mailing list at https://groups.google.com/forum/#!forum/belgian-summer-hackercamp-2014 where we discuss organizational topics.
+\n\n
+				The Fri3d Camp team"
+		Email.send email
+		return
 
 Accounts.validateNewUser (user)->
 	if !user.emails || user.emails.length is 0
