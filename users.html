@@ -44,7 +44,7 @@
 				<td>{{#if paid}}<span class="glyphicon glyphicon-ok"></span>{{else}}<span class="glyphicon glyphicon-euro unpaid"></span>{{/if}}</td>
 		</tr>
 		{{/each}}
-		{{#with total _id}}
+		{{#with user_total _id}}
 		<tr class="total">
 				<td colspan="3">Total paid:</td>
 				<td>{{paid}} €</td>
@@ -65,6 +65,16 @@
 </td>
 </tr>
 {{/each}}
+{{#with total}}
+<tr class="total">
+		<td colspan="2">Total paid:</td>
+		<td>{{paid}} €</td>
+</tr>
+<tr class="total">
+		<td colspan="2">Total unpaid:</td>
+		<td>{{unpaid}} €</td>
+</tr>
+{{/with}}
 </tbody>
 </table>
 </template>

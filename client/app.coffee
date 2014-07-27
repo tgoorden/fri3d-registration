@@ -166,32 +166,38 @@ Template.mailing.events
 
 Template.users.list = ()-> Meteor.users.find {}
 
+@calculate_total = (query)->
+	total = {paid:0,unpaid:0}
+	Tickets.find(query).forEach (ticket)->
+		if ticket.paid
+			total.paid += ticket.amount
+		else
+			total.unpaid += ticket.amount
+	Merchandising.find(query).forEach (merch)->
+		if merch.paid
+			total.paid += merch.amount
+		else
+			total.unpaid += merch.amount
+	Tokens.find(query).forEach (token)->
+		if token.paid
+			total.paid += token.amount
+		else
+			total.unpaid += token.amount
+	return total
+	
+Template.users.total = ()-> calculate_total {}
+
 Template.users.helpers
 	"registrations": (_id)-> Registrations.find {owner: _id}
 	"tickets": (_id)-> Tickets.find {owner: _id}, {sort:["created"]}
 	"merchandising": (_id)-> Merchandising.find {owner:_id}, {sort:["created"]}
 	"tokens": (_id)-> Tokens.find {owner:_id}, {sort:["created"]}
-	"total": (_id)->
-			total = {paid:0,unpaid:0}
-			Tickets.find({owner:_id}).forEach (ticket)->
-				if ticket.paid
-					total.paid += ticket.amount
-				else
-					total.unpaid += ticket.amount
-			Merchandising.find({owner:_id}).forEach (merch)->
-				if merch.paid
-					total.paid += merch.amount
-				else
-					total.unpaid += merch.amount
-			Tokens.find({owner:_id}).forEach (token)->
-				if token.paid
-					total.paid += token.amount
-				else
-					total.unpaid += token.amount
-			if total.unpaid > 0
-				total.pending = true
-			total.owner = _id
-			return total
+	"user_total": (_id)->
+		total = calculate_total {owner:_id}
+		if total.unpaid > 0
+			total.pending = true
+		total.owner = _id
+		return total
 
 Template.users.events
 	"click .confirm": (event,template)->

@@ -29,9 +29,9 @@ Meteor.publish "merchandising", ()->
 	if this.userId
 		user =  Meteor.users.findOne {_id:this.userId}, {fields:{"role":1}}
 		if user.role is "admin"
-			return Merchandising.find {owner:this.userId}
-		else
 			return Merchandising.find {}
+		else
+			return Merchandising.find {owner:this.userId}
 	else
 		return
 
@@ -39,9 +39,9 @@ Meteor.publish "tokens", ()->
 	if this.userId
 		user =  Meteor.users.findOne {_id:this.userId}, {fields:{"role":1}}
 		if user.role is "admin"
-			return Tokens.find {owner:this.userId}
-		else
 			return Tokens.find {}
+		else
+			return Tokens.find {owner:this.userId}
 	else
 		return
 
