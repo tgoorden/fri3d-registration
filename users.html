@@ -3,6 +3,11 @@
 <table class="table table-striped">
 
 <tbody>
+	<tr>
+		<th width="20%">User</th>
+		<th width="20%">Preregistrations</th>
+		<th width="60%">Orders</th>
+	</tr>
 {{#each list}}
 <tr>
 <td>{{#each emails}}
@@ -17,6 +22,13 @@
 </td>
 <td>
 <table class="table table-striped">
+		<tr>
+			<th width="10%">Type</th>
+			<th with="40%">Order</th>
+			<th with="30%">Ordered at</th>
+			<th width="10%">Value</th>
+			<th width="10%">Status</th>
+		</tr>
 		{{#each tickets _id}}
 		<tr>
 				<td><i class="fa fa-ticket"></i></td>
