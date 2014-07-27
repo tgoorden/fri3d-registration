@@ -87,6 +87,13 @@
 		<td>{{unpaid}} €</td>
 </tr>
 {{/with}}
+{{#each total.tickets}}
+<tr class="total">
+		<td>{{type}}</td>
+		<td>{{paid}} paid</td>
+		<td>{{unpaid}} pending</td>
+</tr>
+{{/each}}
 </tbody>
 </table>
 </template>

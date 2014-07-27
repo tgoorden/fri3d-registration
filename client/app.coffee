@@ -168,11 +168,18 @@ Template.users.list = ()-> Meteor.users.find {}
 
 @calculate_total = (query)->
 	total = {paid:0,unpaid:0}
+	total.tickets = []
 	Tickets.find(query).forEach (ticket)->
+		ticket_type = _.findWhere(total.tickets,{type:ticket.type})
+		if !ticket_type
+			ticket_type = {type:ticket.type,paid:0,unpaid:0}
+			total.tickets.push ticket_type
 		if ticket.paid
 			total.paid += ticket.amount
+			ticket_type.paid += 1
 		else
 			total.unpaid += ticket.amount
+			ticket_type += 1
 	Merchandising.find(query).forEach (merch)->
 		if merch.paid
 			total.paid += merch.amount
